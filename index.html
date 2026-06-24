@@ -128,8 +128,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
-<!-- Three.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+
 
 <!-- Lenis -->
 <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
@@ -184,7 +183,7 @@ a,button,input,textarea,select { cursor:none; }
 .preloader-progress { width:120px;height:2px;background:var(--slate);border-radius:2px;margin-top:2rem;overflow:hidden;opacity:0; }
 .preloader-bar { height:100%;width:0;background:var(--roar);border-radius:2px;transition:width .3s; }
 
-#three-container { position:fixed;inset:0;z-index:1;pointer-events:none; }
+
 
 .nav { position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2.5rem;transition:background .4s,padding .4s,backdrop-filter .4s; }
 .nav.scrolled { background:rgba(13,13,13,0.92);backdrop-filter:blur(12px);padding:1.1rem 2.5rem; }
@@ -287,7 +286,7 @@ a,button,input,textarea,select { cursor:none; }
 
 .testimonials { background:var(--ink); }
 .testimonials .section-heading { font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(2rem,4vw,3.5rem);font-weight:400;color:var(--bone); }
-.testimonial-carousel { display:flex;gap:1.5rem;margin-top:3rem;overflow:hidden;position:relative; }
+.testimonial-carousel { display:block;width:100%;margin-top:3rem;overflow:hidden;position:relative; }
 .testimonial-track { display:flex;gap:1.5rem;transition:transform .6s cubic-bezier(.25,.46,.45,.94); }
 .testimonial-card { flex:0 0 calc(33.333% - 1rem);background:var(--slate);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:2.5rem 2rem;min-height:220px;display:flex;flex-direction:column;justify-content:space-between; }
 .testimonial-text { font-size:var(--text-base);line-height:1.7;color:var(--bone);font-style:italic; }
@@ -364,11 +363,11 @@ a,button,input,textarea,select { cursor:none; }
 .faq-item { background:var(--slate);border:1px solid rgba(255,255,255,0.06);border-radius:16px;margin-bottom:1.25rem;overflow:hidden;transition:border-color .3s,box-shadow .3s; }
 .faq-item:hover { border-color:var(--roar);box-shadow:0 10px 30px rgba(255,61,0,0.08); }
 .faq-question { font-family:'Unbounded',sans-serif;font-size:clamp(1.15rem,2.5vw,1.4rem);font-weight:600;color:var(--bone);padding:2rem 2.5rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .3s;line-height:1.4; }
-.faq-item:hover .faq-question { color:var(--roar); }
+.faq-item:hover .faq-question, .faq-item.active .faq-question { color:var(--roar); }
 .faq-icon { font-size:2rem;font-weight:300;transition:transform .3s;flex-shrink:0;margin-left:1.5rem; }
-.faq-item:hover .faq-icon { transform:rotate(45deg); }
+.faq-item.active .faq-icon { transform:rotate(45deg); }
 .faq-answer { max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.25,.46,.45,.94),padding .3s; }
-.faq-item:hover .faq-answer { max-height:600px; }
+.faq-item.active .faq-answer { max-height:600px; }
 .faq-answer p { padding:0 2.5rem 2.5rem;font-size:clamp(1rem,2vw,1.2rem);color:var(--muted);line-height:1.9; }
 
 @media (max-width:768px) {
@@ -456,6 +455,90 @@ a,button,input,textarea,select { cursor:none; }
 }
 
 .preloader-logo .char:nth-child(6) { color:var(--roar); }
+
+/* Floating WhatsApp Button */
+.whatsapp-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  background-color: #25D366;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 9999;
+  transition: transform 0.3s, background-color 0.3s;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  background-color: #128C7E;
+}
+.whatsapp-icon {
+  width: 34px;
+  height: 34px;
+}
+@media (max-width: 768px) {
+  .whatsapp-float {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 50px;
+    height: 50px;
+  }
+  .whatsapp-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* CTA Dynamic Background & Floating Shapes */
+.cta {
+  background: linear-gradient(-45deg, #FF3D00, #FF6B3D, #D52A00, #FF8E53);
+  background-size: 400% 400%;
+  animation: gradientBG 12s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.cta-shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.cta-shape {
+  position: absolute;
+  color: rgba(13, 13, 13, 0.12);
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(1.5rem, 4vw, 3.5rem);
+  user-select: none;
+  will-change: transform;
+}
+.shape-1 { top: 15%; left: 10%; animation: float-slow 8s ease-in-out infinite; }
+.shape-2 { top: 20%; right: 15%; animation: float-medium 10s ease-in-out infinite; font-size: 1.5rem; }
+.shape-3 { bottom: 25%; left: 20%; animation: float-medium 9s ease-in-out infinite; }
+.shape-4 { bottom: 15%; right: 10%; animation: float-slow 12s ease-in-out infinite; font-size: 2rem; }
+.shape-5 { top: 60%; left: 80%; animation: float-fast 7s ease-in-out infinite; }
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+@keyframes float-medium {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-35px) rotate(-180deg); }
+}
+@keyframes float-fast {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(90deg); }
+}
 </style>
 </head>
 <body>
@@ -484,7 +567,7 @@ a,button,input,textarea,select { cursor:none; }
   </div>
 </div>
 
-<div id="three-container"></div>
+
 
 <!-- NAVIGATION -->
 <nav class="nav" id="nav">
@@ -493,7 +576,6 @@ a,button,input,textarea,select { cursor:none; }
     <span>TREX</span><span style="color:var(--roar);">O</span><span>BYTE</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#featured-work" data-nav>Work</a></li>
     <li><a href="#services" data-nav>Services</a></li>
     <li><a href="#pricing" data-nav>Pricing</a></li>
     <li><a href="#about" data-nav>About</a></li>
@@ -506,7 +588,6 @@ a,button,input,textarea,select { cursor:none; }
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#featured-work" data-nav>Work</a>
   <a href="#services" data-nav>Services</a>
   <a href="#pricing" data-nav>Pricing</a>
   <a href="#about" data-nav>About</a>
@@ -533,7 +614,7 @@ a,button,input,textarea,select { cursor:none; }
   <div class="hero-sub">
     <p class="hero-tags">Branding · Websites · SEO · Social · Growth</p>
     <div class="hero-cta-row" id="heroCtaRow">
-      <a href="#contact" class="hero-cta-btn hero-cta-btn--primary modal-trigger" data-modal="contactModal">Book a Call →</a>
+      <a href="#contact" class="hero-cta-btn hero-cta-btn--primary modal-trigger" data-modal="contactModal">Start a Project →</a>
       <a href="#pricing" class="hero-cta-btn hero-cta-btn--secondary">See Pricing</a>
     </div>
     <div class="hero-scroll-indicator" id="scrollIndicator">
@@ -652,31 +733,7 @@ a,button,input,textarea,select { cursor:none; }
   </div>
 </section>
 
-<!-- FEATURED WORK -->
-<section class="section featured-work" id="featured-work">
-  <div class="section-inner">
-    <p class="section-label">PROVEN RESULTS</p>
-    <h2 class="section-heading section-heading--small">Websites We've Engineered for Nepali Brands</h2>
-    <div class="pricing-grid" style="grid-template-columns:repeat(2,1fr);">
-      <div class="pricing-card" style="opacity:1;transform:none;display:flex;flex-direction:column;justify-content:space-between;height:100%;">
-        <div>
-          <span class="pricing-tier" style="color:var(--roar);">Web Development</span>
-          <h3 style="font-family:'Unbounded',sans-serif;font-size:var(--text-xl);font-weight:700;color:var(--bone);margin-bottom:.75rem;">Drill Beauty</h3>
-          <p style="color:var(--bone);line-height:1.6;font-size:var(--text-sm);margin-bottom:1.5rem;">A bold, high-converting landing page for a premium beauty brand. Built for speed, mobile-first, and optimized for bookings.</p>
-        </div>
-        <a href="https://drill-beige.vercel.app" target="_blank" rel="noopener noreferrer" class="pricing-btn pricing-btn-outline">View Live →</a>
-      </div>
-      <div class="pricing-card" style="opacity:1;transform:none;display:flex;flex-direction:column;justify-content:space-between;height:100%;">
-        <div>
-          <span class="pricing-tier" style="color:var(--roar);">Web Development</span>
-          <h3 style="font-family:'Unbounded',sans-serif;font-size:var(--text-xl);font-weight:700;color:var(--bone);margin-bottom:.75rem;">Get It Nepal</h3>
-          <p style="color:var(--bone);line-height:1.6;font-size:var(--text-sm);margin-bottom:1.5rem;">A dynamic e-commerce platform tailored for the Nepali market. Seamless checkout, local payment integration, and scalable architecture.</p>
-        </div>
-        <a href="https://getitnepalwebsite-8pug.vercel.app" target="_blank" rel="noopener noreferrer" class="pricing-btn pricing-btn-outline">View Live →</a>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- PRICING -->
 <section class="section pricing" id="pricing">
@@ -703,7 +760,7 @@ a,button,input,textarea,select { cursor:none; }
           <li>Typography</li>
           <li>Basic Guidelines</li>
         </ul>
-        <a href="#" class="pricing-btn pricing-btn-outline modal-trigger" data-modal="contactModal">Get Started</a>
+        <a href="#" class="pricing-btn pricing-btn-outline modal-trigger" data-modal="contactModal" data-tier="starter">Start hatching</a>
       </div>
       <div class="pricing-card featured">
         <div class="pricing-tier">Premium</div>
@@ -715,7 +772,7 @@ a,button,input,textarea,select { cursor:none; }
           <li>Advanced SEO & Performance Ads</li>
           <li>Dedicated Account Manager</li>
         </ul>
-        <a href="#" class="pricing-btn pricing-btn-filled modal-trigger" data-modal="contactModal">Let's Roar</a>
+        <a href="#" class="pricing-btn pricing-btn-filled modal-trigger" data-modal="contactModal" data-tier="premium">Let's Roar</a>
       </div>
       <div class="pricing-card">
         <div class="pricing-tier">Enterprise</div>
@@ -727,7 +784,7 @@ a,button,input,textarea,select { cursor:none; }
           <li>Full-Scale Content Production</li>
           <li>Priority 24/7 Support</li>
         </ul>
-        <a href="#" class="pricing-btn pricing-btn-outline modal-trigger" data-modal="contactModal">Contact Us</a>
+        <a href="#" class="pricing-btn pricing-btn-outline modal-trigger" data-modal="contactModal" data-tier="enterprise">Contact Us</a>
       </div>
     </div>
     <p class="pricing-note">⚡ Choose between services in custom plan. <a href="#contact">Contact us</a> for a tailored quote.</p>
@@ -791,12 +848,19 @@ a,button,input,textarea,select { cursor:none; }
 
 <!-- CTA -->
 <section class="cta" id="contact">
-  <div class="section-inner">
+  <div class="cta-shapes">
+    <div class="cta-shape shape-1">✦</div>
+    <div class="cta-shape shape-2">●</div>
+    <div class="cta-shape shape-3">✦</div>
+    <div class="cta-shape shape-4">▲</div>
+    <div class="cta-shape shape-5">✦</div>
+  </div>
+  <div class="section-inner" style="position:relative; z-index:1;">
     <h2 class="cta-heading">READY TO ROAR? <span class="emoji" id="ctaEmoji">🦖</span></h2>
     <p class="cta-sub">Let's build something the world can't ignore.</p>
     <div class="cta-buttons">
       <a href="#contact" class="cta-btn cta-btn-dark modal-trigger" data-modal="contactModal">Start a Project →</a>
-      <a href="#featured-work" class="cta-btn cta-btn-outline">See Our Work →</a>
+      <a href="https://wa.me/9779843293219" target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn-outline">Message us on WhatsApp →</a>
     </div>
   </div>
 </section>
@@ -812,7 +876,7 @@ a,button,input,textarea,select { cursor:none; }
     </div>
     <div class="footer-col">
       <h4>Navigate</h4>
-      <a href="#hero">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#featured-work">Work</a><a href="#contact">Contact</a>
+      <a href="#hero">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a>
     </div>
     <div class="footer-col">
       <h4>Services</h4>
@@ -837,53 +901,21 @@ a,button,input,textarea,select { cursor:none; }
 <div class="contact-modal-overlay" id="contactModal" data-lenis-prevent>
   <div class="contact-modal">
     <button class="modal-close" id="modalClose">✕</button>
-    <div class="modal-tabs">
-      <button class="modal-tab active" data-tab="book-call">Book a Call</button>
-      <button class="modal-tab" data-tab="start-project">Start a Project</button>
-    </div>
-    <div class="modal-content active" id="book-call">
-      <h3>Schedule Your Free Consultation</h3>
-      <label>Select Date</label>
-      <input type="date" placeholder="Choose a date">
-      <label>Select Time</label>
-      <select>
-        <option>10:00 AM</option>
-        <option>11:00 AM</option>
-        <option>12:00 PM</option>
-        <option>2:00 PM</option>
-        <option>3:00 PM</option>
-        <option>4:00 PM</option>
-      </select>
-      <label>Your Name</label>
-      <input type="text" placeholder="Enter your full name">
-      <label>Email Address</label>
-      <input type="email" placeholder="you@example.com">
-      <label>Phone Number</label>
-      <input type="tel" placeholder="+977 XXX XXX XXXX">
-      <button class="modal-submit">Confirm Booking</button>
-      <div class="modal-phone">
-        <p class="modal-phone-label">Or call us directly</p>
-        <a href="tel:+9779843293219">+977 9843293219</a>
-      </div>
-    </div>
-    <div class="modal-content" id="start-project">
+    <div class="modal-content active" id="start-project">
       <h3>Tell Us About Your Project</h3>
       <label>Project Type</label>
-      <select>
-        <option>Brand Identity</option>
-        <option>Web Development</option>
-        <option>SEO & Content</option>
-        <option>Social Media</option>
-        <option>Performance Ads</option>
-        <option>Full Package</option>
+      <select id="projectTypeSelect">
+        <option value="branding">Brand Identity</option>
+        <option value="web">Web Development</option>
+        <option value="seo">SEO & Content</option>
+        <option value="social">Social Media</option>
+        <option value="ads">Performance Ads</option>
+        <option value="full">Full Package</option>
+        <option value="custom">Custom Option</option>
       </select>
-      <label>Budget Range</label>
-      <select>
-        <option>Rs. 50k - Rs. 100k</option>
-        <option>Rs. 100k - Rs. 200k</option>
-        <option>Rs. 200k - Rs. 500k</option>
-        <option>Rs. 500k+</option>
-        <option>Not sure yet</option>
+      <label id="budgetLabel">Budget Range</label>
+      <select id="budgetSelect">
+        <!-- Dynamic options loaded via JS -->
       </select>
       <label>Your Name</label>
       <input type="text" placeholder="Enter your full name">
@@ -960,8 +992,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   let isScrolling = false;
-  let objectGroup, shapeGroup, mesh;
-  let resetScrollState;
+  const resetScrollState = () => {
+    ScrollTrigger.refresh();
+  };
 
   const pricingData = {
     branding: {
@@ -994,188 +1027,6 @@ document.addEventListener('DOMContentLoaded', () => {
       lenis.on('scroll', ScrollTrigger.update);
       gsap.ticker.add((time) => lenis.raf(time * 1000));
       gsap.ticker.lagSmoothing(0);
-    }
-
-    let scene, camera, renderer;
-    let threeReady = false;
-    let heroVisible = true;
-    let frameTimes = [];
-    let fpsSafeguardTriggered = false;
-    let renderDisabled = false;
-
-    // 3. Smart Render Throttling (Visibility)
-    try {
-      const heroEl = document.getElementById('hero');
-      if (heroEl) {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            heroVisible = entry.isIntersecting;
-          });
-        }, { threshold: 0 });
-        observer.observe(heroEl);
-      }
-    } catch (e) {
-      console.warn('IntersectionObserver not supported:', e);
-    }
-
-    // 4. Tailored WebGL Setup
-    function initThree() {
-      const container = document.getElementById('three-container');
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      scene = new THREE.Scene();
-      camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-      camera.position.z = 6;
-
-      const rendererParams = { alpha: true };
-      if (isLowEnd) {
-        rendererParams.antialias = false;
-        rendererParams.precision = 'mediump';
-        rendererParams.powerPreference = 'high-performance';
-      } else {
-        rendererParams.antialias = true;
-      }
-
-      renderer = new THREE.WebGLRenderer(rendererParams);
-      renderer.setSize(width, height);
-      renderer.setPixelRatio(isLowEnd ? 1.0 : Math.min(window.devicePixelRatio, 1.5));
-      renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.2;
-      container.appendChild(renderer.domElement);
-
-      const ambientLight = new THREE.AmbientLight(0x404060, 0.5);
-      scene.add(ambientLight);
-      const mainLight = new THREE.DirectionalLight(0xff6633, 1.8);
-      mainLight.position.set(2, 3, 4);
-      scene.add(mainLight);
-      const fillLight = new THREE.DirectionalLight(0x3366ff, 0.6);
-      fillLight.position.set(-3, 1, 2);
-      scene.add(fillLight);
-      const rimLight = new THREE.DirectionalLight(0xff3300, 0.4);
-      rimLight.position.set(0, -2, -3);
-      scene.add(rimLight);
-
-      objectGroup = new THREE.Group();
-      shapeGroup = new THREE.Group();
-
-      const radialSegs = isLowEnd ? 50 : 90;
-      const tubularSegs = isLowEnd ? 10 : 14;
-
-      const geometry = new THREE.TorusKnotGeometry(0.8, 0.3, radialSegs, tubularSegs);
-      const material = new THREE.MeshStandardMaterial({ color: 0xff3d00, emissive: 0xcc2200, emissiveIntensity: 0.15, metalness: 0.8, roughness: 0.2, wireframe: false });
-      mesh = new THREE.Mesh(geometry, material);
-      mesh.castShadow = true;
-      shapeGroup.add(mesh);
-
-      const wireGeo = new THREE.TorusKnotGeometry(0.82, 0.32, radialSegs, tubularSegs);
-      const wireMat = new THREE.MeshBasicMaterial({ color: 0xff6b3d, wireframe: true, transparent: true, opacity: 0.12 });
-      const wireMesh = new THREE.Mesh(wireGeo, wireMat);
-      shapeGroup.add(wireMesh);
-      objectGroup.add(shapeGroup);
-
-      const particleCount = isLowEnd ? 120 : 250;
-      const particleGeo = new THREE.BufferGeometry();
-      const positions = new Float32Array(particleCount * 3);
-      for (let i = 0; i < particleCount * 3; i++) { positions[i] = (Math.random() - 0.5) * 8; }
-      particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-      const particleMat = new THREE.PointsMaterial({ color: 0xff6b3d, size: 0.015, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending });
-      const particles = new THREE.Points(particleGeo, particleMat);
-      objectGroup.add(particles);
-
-      scene.add(objectGroup);
-      threeReady = true;
-    }
-
-    function animateThree() {
-      if (!threeReady || renderDisabled) return;
-      requestAnimationFrame(animateThree);
-
-      // Throttling: Pause if not visible or page hidden
-      if (!heroVisible || document.hidden) return;
-
-      const startTime = performance.now();
-
-      const time = Date.now() * 0.001;
-      if (shapeGroup) {
-        shapeGroup.rotation.y += 0.005;
-        shapeGroup.position.y = Math.sin(time) * 0.06;
-      }
-      renderer.render(scene, camera);
-
-      const endTime = performance.now();
-
-      // 5. Dynamic FPS Safeguard
-      if (!fpsSafeguardTriggered) {
-        const frameTime = endTime - startTime;
-        frameTimes.push(frameTime);
-        if (frameTimes.length > 60) {
-          frameTimes.shift();
-          const avgFrameTime = frameTimes.reduce((a, b) => a + b, 0) / frameTimes.length;
-          // If average rendering frame time is > 33.3ms (FPS < 30)
-          if (avgFrameTime > 33.3) {
-            fpsSafeguardTriggered = true;
-            console.warn('Low FPS detected. Downscaling canvas resolution...');
-            renderer.setPixelRatio(0.75);
-            frameTimes = [];
-
-            // Secondary check: if still struggling after 2 more seconds, stop WebGL completely
-            setTimeout(() => {
-              const secondAvg = frameTimes.reduce((a, b) => a + b, 0) / (frameTimes.length || 1);
-              if (frameTimes.length > 30 && secondAvg > 45) {
-                console.warn('Persistent rendering lag. Switching to high-performance static fallback.');
-                renderDisabled = true;
-                const container = document.getElementById('three-container');
-                if (container) {
-                  container.style.transition = 'opacity 1s ease';
-                  container.style.opacity = '0';
-                  setTimeout(() => { container.style.display = 'none'; }, 1000);
-                }
-              }
-            }, 2000);
-          }
-        }
-      }
-    }
-
-    try { initThree(); animateThree(); } catch (e) { console.warn('Three.js init failed:', e); }
-
-    if (threeReady && !prefersReducedMotion) {
-      // Set initial values
-      gsap.set(objectGroup.position, { x: 0, y: 0.3, z: 0 });
-      gsap.set(objectGroup.scale, { x: 1, y: 1, z: 1 });
-      gsap.set(objectGroup.rotation, { x: 0, z: 0 });
-      if (mesh) gsap.set(mesh.material, { emissiveIntensity: 0.15 });
-
-      resetScrollState = function() {
-        ScrollTrigger.refresh();
-      };
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: 'body',
-          start: 'top top',
-          end: 'bottom bottom',
-          scrub: 1.2, // buttery smooth scrubbing with physics interpolation
-          invalidateOnRefresh: true
-        }
-      });
-
-      tl.to(objectGroup.position, { x: 2.2, y: 0.6, z: 0, ease: 'power1.inOut' })
-        .to(objectGroup.scale, { x: 0.6, y: 0.6, z: 0.6, ease: 'power1.inOut' }, '<')
-        .to(objectGroup.rotation, { x: Math.PI * 0.8, z: Math.PI * 0.15, ease: 'power1.inOut' }, '<')
-        .to(mesh.material, { emissiveIntensity: 0.3, ease: 'power1.inOut' }, '<')
-        
-        // Move to Pricing position
-        .to(objectGroup.position, { x: 0, y: -1.0, z: -1, ease: 'power1.inOut' })
-        .to(objectGroup.scale, { x: 0.5, y: 0.5, z: 0.5, ease: 'power1.inOut' }, '<')
-        .to(objectGroup.rotation, { x: Math.PI * 1.6, z: Math.PI * 0.3, ease: 'power1.inOut' }, '<')
-        .to(mesh.material, { emissiveIntensity: 0.5, ease: 'power1.inOut' }, '<')
-        
-        // Move to Ready to Roar (CTA) position
-        .to(objectGroup.position, { x: 0, y: 0.1, z: 0.4, ease: 'power1.inOut' })
-        .to(objectGroup.scale, { x: 0.85, y: 0.85, z: 0.85, ease: 'power1.inOut' }, '<')
-        .to(objectGroup.rotation, { x: Math.PI * 2.2, z: Math.PI * 0.45, ease: 'power1.inOut' }, '<')
-        .to(mesh.material, { emissiveIntensity: 0.65, ease: 'power1.inOut' }, '<');
     }
 
     if (!prefersReducedMotion) {
@@ -1248,6 +1099,19 @@ document.addEventListener('DOMContentLoaded', () => {
     goToTestimonial(0); startTestimonialAuto();
     let resizeTimer; window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => goToTestimonial(currentTestimonial), 200); });
 
+    // FAQ Accordion Toggle Fix
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        faqItems.forEach(i => i.classList.remove('active'));
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+
     // 6. Conditional Custom Cursor Fallback
     if (!prefersReducedMotion && !isLowEnd && !('ontouchstart' in window)) {
       const dot = document.getElementById('cursorDot');
@@ -1299,8 +1163,59 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalTriggers = document.querySelectorAll('.modal-trigger');
     const contactModal = document.getElementById('contactModal');
     const modalClose = document.getElementById('modalClose');
-    const modalTabs = document.querySelectorAll('.modal-tab');
-    const modalContents = document.querySelectorAll('.modal-content');
+    const projectTypeSelect = document.getElementById('projectTypeSelect');
+    const budgetSelect = document.getElementById('budgetSelect');
+    const budgetLabel = document.getElementById('budgetLabel');
+
+    // Dynamic select options logic
+    function updateBudgetOptions() {
+      const projectType = projectTypeSelect.value;
+      budgetSelect.innerHTML = '';
+      
+      if (projectType === 'custom') {
+        budgetLabel.textContent = 'Budget Range';
+        const options = [
+          'Rs. 10k - Rs. 20k',
+          'Rs. 20k - Rs. 30k',
+          'Rs. 30k - Rs. 40k',
+          'Rs. 40k - Rs. 50k',
+          'Rs. 50k+'
+        ];
+        options.forEach(opt => {
+          const o = document.createElement('option');
+          o.value = opt;
+          o.textContent = opt;
+          budgetSelect.appendChild(o);
+        });
+      } else {
+        budgetLabel.textContent = 'Select Package';
+        let packages = [];
+        if (projectType === 'branding') {
+          packages = ['Starter (Rs. 50k)', 'Premium (Rs. 120k)', 'Enterprise (Custom)'];
+        } else if (projectType === 'web') {
+          packages = ['Starter (Rs. 80k)', 'Premium (Rs. 200k)', 'Enterprise (Custom)'];
+        } else if (projectType === 'seo') {
+          packages = ['Starter (Rs. 40k)', 'Premium (Rs. 100k)', 'Enterprise (Custom)'];
+        } else if (projectType === 'social') {
+          packages = ['Starter (Rs. 35k)', 'Premium (Rs. 90k)', 'Enterprise (Custom)'];
+        } else if (projectType === 'ads') {
+          packages = ['Starter (Rs. 60k)', 'Premium (Rs. 150k)', 'Enterprise (Custom)'];
+        } else if (projectType === 'full') {
+          packages = ['Starter Package', 'Premium Package', 'Enterprise (Custom)'];
+        }
+        
+        packages.forEach(pkg => {
+          const o = document.createElement('option');
+          o.value = pkg;
+          o.textContent = pkg;
+          budgetSelect.appendChild(o);
+        });
+      }
+    }
+
+    projectTypeSelect.addEventListener('change', updateBudgetOptions);
+    // Run once to initialize
+    updateBudgetOptions();
 
     function openModal() {
       contactModal.classList.add('active');
@@ -1326,6 +1241,24 @@ document.addEventListener('DOMContentLoaded', () => {
     modalTriggers.forEach(trigger => {
       trigger.addEventListener('click', (e) => {
         e.preventDefault();
+        // Pre-fill logic if a pricing button was clicked
+        const card = trigger.closest('.pricing-card');
+        if (card) {
+          const tier = trigger.dataset.tier;
+          const activeTab = document.querySelector('.pricing-tab.active');
+          const category = activeTab ? activeTab.dataset.category : 'branding';
+          
+          projectTypeSelect.value = category;
+          updateBudgetOptions();
+          
+          if (tier === 'starter') {
+            budgetSelect.selectedIndex = 0;
+          } else if (tier === 'premium') {
+            budgetSelect.selectedIndex = 1;
+          } else if (tier === 'enterprise') {
+            budgetSelect.selectedIndex = 2;
+          }
+        }
         openModal();
       });
     });
@@ -1334,21 +1267,6 @@ document.addEventListener('DOMContentLoaded', () => {
     contactModal.addEventListener('click', (e) => {
       if (e.target === contactModal) closeModal();
     });
-
-    modalTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        modalTabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        const targetId = tab.dataset.tab;
-        modalContents.forEach(content => {
-          content.classList.remove('active');
-          if (content.id === targetId) content.classList.add('active');
-        });
-        ScrollTrigger.refresh();
-      });
-    });
-
-    if (threeReady) { window.addEventListener('resize', () => { const width = window.innerWidth; const height = window.innerHeight; camera.aspect = width / height; camera.updateProjectionMatrix(); renderer.setSize(width, height); }); }
 
     if (!prefersReducedMotion) { setTimeout(() => { ScrollTrigger.refresh(); }, 500); }
 
@@ -1367,5 +1285,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 </script>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/9779843293219" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" class="whatsapp-icon">
+    <path fill="currentColor" d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 0 0 1.333 4.982L2 22l5.233-1.371a9.936 9.936 0 0 0 4.779 1.229h.004c5.505 0 9.988-4.478 9.99-9.984a9.984 9.984 0 0 0-9.994-9.874zm5.79 14.218c-.25.707-1.462 1.3-2.012 1.387-.5.08-1.15.148-3.35-.765-2.82-1.168-4.63-4.047-4.77-4.237-.14-.19-1.12-1.49-1.12-2.841 0-1.35.7-2.01 1-2.31.25-.25.65-.35.95-.35.1 0 .2 0 .3.05.25 0 .4.05.55.4.15.35.6 1.45.65 1.55.05.1.1.25.02.4-.08.15-.15.25-.25.38-.1.12-.23.28-.33.38-.1.1-.2.2-.1.35.15.25.65 1.071 1.4 1.741.97.87 1.78 1.14 2.03 1.27.25.13.4.1.55-.05.15-.15.65-.75.82-.99.17-.25.35-.2.6-.1.25.1 1.6.75 1.88.89.28.14.47.2.55.35.08.15.08.87-.17 1.58z"/>
+  </svg>
+</a>
 </body>
 </html>
