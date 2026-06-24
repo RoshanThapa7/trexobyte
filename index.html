@@ -903,6 +903,41 @@ a,button,input,textarea,select { cursor:none; }
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
+
+  // 1. Device Capability Detector
+  function isLowEndDevice() {
+    if (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) {
+      return true;
+    }
+    if (navigator.deviceMemory && navigator.deviceMemory <= 4) {
+      return true;
+    }
+    try {
+      const canvas = document.createElement('canvas');
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!gl) return true;
+      const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+      if (debugInfo) {
+        const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) || '';
+        const lowerRenderer = renderer.toLowerCase();
+        if (
+          lowerRenderer.includes('intel') ||
+          lowerRenderer.includes('hd graphics') ||
+          lowerRenderer.includes('uhd graphics') ||
+          lowerRenderer.includes('iris') ||
+          lowerRenderer.includes('swiftshader') ||
+          lowerRenderer.includes('software') ||
+          lowerRenderer.includes('llvmpipe') ||
+          lowerRenderer.includes('basic render')
+        ) {
+          return true;
+        }
+      }
+    } catch (e) {}
+    return false;
+  }
+  const isLowEnd = isLowEndDevice();
+
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const preloader = document.getElementById('preloader');
   const preloaderChars = document.querySelectorAll('#preloaderLogo .char');
@@ -952,8 +987,9 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   function initSite() {
+    // 2. Conditional Smooth Scroll Fallback
     let lenis;
-    if (!prefersReducedMotion) {
+    if (!prefersReducedMotion && !isLowEnd) {
       lenis = new Lenis({ duration: 0.9, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true, wheelMultiplier: 0.8, touchMultiplier: 1.8, infinite: false });
       lenis.on('scroll', ScrollTrigger.update);
       gsap.ticker.add((time) => lenis.raf(time * 1000));
@@ -962,6 +998,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let scene, camera, renderer;
     let threeReady = false;
+    let heroVisible = true;
+    let frameTimes = [];
+    let fpsSafeguardTriggered = false;
+    let renderDisabled = false;
+
+    // 3. Smart Render Throttling (Visibility)
+    try {
+      const heroEl = document.getElementById('hero');
+      if (heroEl) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            heroVisible = entry.isIntersecting;
+          });
+        }, { threshold: 0 });
+        observer.observe(heroEl);
+      }
+    } catch (e) {
+      console.warn('IntersectionObserver not supported:', e);
+    }
+
+    // 4. Tailored WebGL Setup
     function initThree() {
       const container = document.getElementById('three-container');
       const width = window.innerWidth;
@@ -969,12 +1026,23 @@ document.addEventListener('DOMContentLoaded', () => {
       scene = new THREE.Scene();
       camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
       camera.position.z = 6;
-      renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+
+      const rendererParams = { alpha: true };
+      if (isLowEnd) {
+        rendererParams.antialias = false;
+        rendererParams.precision = 'mediump';
+        rendererParams.powerPreference = 'high-performance';
+      } else {
+        rendererParams.antialias = true;
+      }
+
+      renderer = new THREE.WebGLRenderer(rendererParams);
       renderer.setSize(width, height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(isLowEnd ? 1.0 : Math.min(window.devicePixelRatio, 1.5));
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1.2;
       container.appendChild(renderer.domElement);
+
       const ambientLight = new THREE.AmbientLight(0x404060, 0.5);
       scene.add(ambientLight);
       const mainLight = new THREE.DirectionalLight(0xff6633, 1.8);
@@ -986,19 +1054,26 @@ document.addEventListener('DOMContentLoaded', () => {
       const rimLight = new THREE.DirectionalLight(0xff3300, 0.4);
       rimLight.position.set(0, -2, -3);
       scene.add(rimLight);
+
       objectGroup = new THREE.Group();
       shapeGroup = new THREE.Group();
-      const geometry = new THREE.TorusKnotGeometry(0.8, 0.3, 100, 16);
+
+      const radialSegs = isLowEnd ? 50 : 90;
+      const tubularSegs = isLowEnd ? 10 : 14;
+
+      const geometry = new THREE.TorusKnotGeometry(0.8, 0.3, radialSegs, tubularSegs);
       const material = new THREE.MeshStandardMaterial({ color: 0xff3d00, emissive: 0xcc2200, emissiveIntensity: 0.15, metalness: 0.8, roughness: 0.2, wireframe: false });
       mesh = new THREE.Mesh(geometry, material);
       mesh.castShadow = true;
       shapeGroup.add(mesh);
-      const wireGeo = new THREE.TorusKnotGeometry(0.82, 0.32, 100, 16);
+
+      const wireGeo = new THREE.TorusKnotGeometry(0.82, 0.32, radialSegs, tubularSegs);
       const wireMat = new THREE.MeshBasicMaterial({ color: 0xff6b3d, wireframe: true, transparent: true, opacity: 0.12 });
       const wireMesh = new THREE.Mesh(wireGeo, wireMat);
       shapeGroup.add(wireMesh);
       objectGroup.add(shapeGroup);
-      const particleCount = 300;
+
+      const particleCount = isLowEnd ? 120 : 250;
       const particleGeo = new THREE.BufferGeometry();
       const positions = new Float32Array(particleCount * 3);
       for (let i = 0; i < particleCount * 3; i++) { positions[i] = (Math.random() - 0.5) * 8; }
@@ -1006,19 +1081,62 @@ document.addEventListener('DOMContentLoaded', () => {
       const particleMat = new THREE.PointsMaterial({ color: 0xff6b3d, size: 0.015, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending });
       const particles = new THREE.Points(particleGeo, particleMat);
       objectGroup.add(particles);
+
       scene.add(objectGroup);
       threeReady = true;
     }
+
     function animateThree() {
-      if (!threeReady) return;
+      if (!threeReady || renderDisabled) return;
       requestAnimationFrame(animateThree);
+
+      // Throttling: Pause if not visible or page hidden
+      if (!heroVisible || document.hidden) return;
+
+      const startTime = performance.now();
+
       const time = Date.now() * 0.001;
       if (shapeGroup) {
         shapeGroup.rotation.y += 0.005;
         shapeGroup.position.y = Math.sin(time) * 0.06;
       }
       renderer.render(scene, camera);
+
+      const endTime = performance.now();
+
+      // 5. Dynamic FPS Safeguard
+      if (!fpsSafeguardTriggered) {
+        const frameTime = endTime - startTime;
+        frameTimes.push(frameTime);
+        if (frameTimes.length > 60) {
+          frameTimes.shift();
+          const avgFrameTime = frameTimes.reduce((a, b) => a + b, 0) / frameTimes.length;
+          // If average rendering frame time is > 33.3ms (FPS < 30)
+          if (avgFrameTime > 33.3) {
+            fpsSafeguardTriggered = true;
+            console.warn('Low FPS detected. Downscaling canvas resolution...');
+            renderer.setPixelRatio(0.75);
+            frameTimes = [];
+
+            // Secondary check: if still struggling after 2 more seconds, stop WebGL completely
+            setTimeout(() => {
+              const secondAvg = frameTimes.reduce((a, b) => a + b, 0) / (frameTimes.length || 1);
+              if (frameTimes.length > 30 && secondAvg > 45) {
+                console.warn('Persistent rendering lag. Switching to high-performance static fallback.');
+                renderDisabled = true;
+                const container = document.getElementById('three-container');
+                if (container) {
+                  container.style.transition = 'opacity 1s ease';
+                  container.style.opacity = '0';
+                  setTimeout(() => { container.style.display = 'none'; }, 1000);
+                }
+              }
+            }, 2000);
+          }
+        }
+      }
     }
+
     try { initThree(); animateThree(); } catch (e) { console.warn('Three.js init failed:', e); }
 
     if (threeReady && !prefersReducedMotion) {
@@ -1130,8 +1248,8 @@ document.addEventListener('DOMContentLoaded', () => {
     goToTestimonial(0); startTestimonialAuto();
     let resizeTimer; window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => goToTestimonial(currentTestimonial), 200); });
 
-    // CURSOR
-    if (!prefersReducedMotion && !('ontouchstart' in window)) {
+    // 6. Conditional Custom Cursor Fallback
+    if (!prefersReducedMotion && !isLowEnd && !('ontouchstart' in window)) {
       const dot = document.getElementById('cursorDot');
       const ring = document.getElementById('cursorRing');
       const icon = document.getElementById('cursorIcon');
@@ -1142,6 +1260,23 @@ document.addEventListener('DOMContentLoaded', () => {
       const hoverTargets = document.querySelectorAll('a, button, .service-card, .pricing-card, .roar-reason, .industry-tag, .nav-cta, .modal-tab, .modal-close, .modal-content input, .modal-content select, .modal-content textarea, .modal-content label');
       hoverTargets.forEach(el => { el.addEventListener('mouseenter', () => { ring.classList.add('is-hover'); icon.classList.add('is-visible'); }); el.addEventListener('mouseleave', () => { ring.classList.remove('is-hover'); icon.classList.remove('is-visible'); }); });
       document.addEventListener('click', (e) => { const ripple = document.createElement('div'); ripple.className = 'cursor-ripple'; ripple.style.left = e.clientX + 'px'; ripple.style.top = e.clientY + 'px'; document.body.appendChild(ripple); setTimeout(() => ripple.remove(), 800); });
+    } else {
+      // Hide custom cursor elements and restore browser-native cursors
+      const dot = document.getElementById('cursorDot');
+      const ring = document.getElementById('cursorRing');
+      const icon = document.getElementById('cursorIcon');
+      if (dot) dot.style.display = 'none';
+      if (ring) ring.style.display = 'none';
+      if (icon) icon.style.display = 'none';
+
+      const style = document.createElement('style');
+      style.innerHTML = `
+        body { cursor: auto !important; }
+        a, button, select, .modal-tab, .modal-close, .pricing-btn, .industry-tag, .nav-cta, [data-nav] { cursor: pointer !important; }
+        input, textarea { cursor: text !important; }
+        .cursor-dot, .cursor-ring, .cursor-icon { display: none !important; }
+      `;
+      document.head.appendChild(style);
     }
 
     // MOBILE MENU
