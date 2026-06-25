@@ -431,7 +431,7 @@ a,button,input,textarea,select { cursor:none; }
 
 @media (max-width:1024px) {
   .services-grid { grid-template-columns:repeat(2,1fr); }
-  .pricing-grid { grid-template-columns:1fr;max-width:500px;margin-left:auto;margin-right:auto; }
+  .pricing-grid, .pricing-grid.two-cols { grid-template-columns:1fr;max-width:500px;margin-left:auto;margin-right:auto; }
   .pricing-card.featured { transform:scale(1); }
   .footer-grid { grid-template-columns:1fr 1fr; }
 }
@@ -562,6 +562,60 @@ a,button,input,textarea,select { cursor:none; }
 @keyframes float-fast {
   0%, 100% { transform: translateY(0) rotate(0deg); }
   50% { transform: translateY(-15px) rotate(90deg); }
+}
+
+/* Responsive adjustments for small-to-medium laptops */
+@media (max-width: 1440px) {
+  :root {
+    --text-3xl: clamp(2.5rem, 4.5vw, 3.8rem);
+    --text-2xl: clamp(1.8rem, 3vw, 2.4rem);
+    --text-xl: clamp(1.3rem, 2vw, 1.5rem);
+    --text-hero: clamp(2.4rem, 5.2vw, 4.2rem);
+  }
+  .section {
+    padding: 5rem 2rem;
+  }
+  .hero {
+    padding: 5.5rem 2rem 2.5rem;
+  }
+  .section-heading--small {
+    font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  }
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Vertical height optimizations for laptops with short screens */
+@media (max-height: 800px) and (min-width: 769px) {
+  .hero {
+    min-height: 85vh;
+    padding: 5rem 2rem 1.5rem;
+  }
+  .hero-scroll-indicator {
+    margin-top: 1.5rem;
+  }
+  .hero-cta-row {
+    margin-top: 1rem;
+  }
+  .contact-modal {
+    padding: 2rem;
+    margin: 1rem auto;
+  }
+  .modal-content input, .modal-content select, .modal-content textarea {
+    margin-bottom: 0.75rem;
+    padding: 0.7rem 0.9rem;
+  }
+  .modal-content h3 {
+    margin-bottom: 1rem;
+  }
 }
 </style>
 </head>
@@ -912,7 +966,7 @@ a,button,input,textarea,select { cursor:none; }
       <div class="social-links">
         <a href="#" target="_blank">Instagram</a>
         <a href="#" target="_blank">Facebook</a>
-        <a href="#" target="_blank">LinkedIn</a>
+        <a href="https://www.linkedin.com/company/trexobyte/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
     </div>
   </div>
@@ -948,6 +1002,8 @@ a,button,input,textarea,select { cursor:none; }
       <input type="text" name="name" id="contactName" placeholder="Enter your full name" required>
       <label>Email Address</label>
       <input type="email" name="email" id="contactEmail" placeholder="you@example.com" required>
+      <label>Phone Number</label>
+      <input type="tel" name="phone" id="contactPhone" placeholder="Your phone number" required>
       <label>Project Details</label>
       <textarea name="message" id="contactMessage" placeholder="Describe your project goals, timeline, and any specific requirements..." required></textarea>
       
