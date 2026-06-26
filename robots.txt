@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# Explicitly allow the AI engines that run live web searches for users
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Keep blocking aggressive scrapers that don't give you traffic or citations
+User-agent: Bytespider
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+# Point search engines directly to your site map
+Sitemap: https://trexobyte.com/sitemap.xml
