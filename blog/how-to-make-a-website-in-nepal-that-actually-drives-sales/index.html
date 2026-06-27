@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7SDYT5CFL4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7SDYT5CFL4');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>How to Make a Website in Nepal That Actually Drives Sales | TrexoByte Blog</title>
+  <meta name="description" content="Discover the strategy-first roadmap to make a website in Nepal that drives leads and revenue. Learn about free .com.np domains, local payment gateway setups (eSewa, Khalti), and mobile SEO tactics.">
+  <meta name="keywords" content="Make website in Nepal, web design Nepal, website cost Nepal, eSewa integration, free domain Nepal, local SEO Kathmandu, Mercantile domain registration">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Dynamic Loader Metadata -->
+  <meta name="publish-date" content="June 27, 2026">
+  <meta name="read-time" content="8 min read">
+  <meta name="category" content="Web Design">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to Make a Website in Nepal That Actually Drives Sales">
+  <meta property="og:description" content="Stop building static pages that blend in. Learn how to design a high-converting website in Nepal that integrates eSewa/Khalti, ranks #1 on local search engines, and converts visitors.">
+  <meta property="og:image" content="https://trexobyte.com/logo.png">
+  <meta property="og:url" content="https://trexobyte.com/blog/how-to-make-a-website-in-nepal-that-actually-drives-sales/">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../../favicon.png">
+  <link rel="apple-touch-icon" href="../../favicon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+
+  <!-- JSON-LD Articles and FAQ Schemas for SEO/AEO/GEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "How to Make a Website in Nepal That Actually Drives Sales",
+    "description": "A comprehensive, step-by-step roadmap to building high-converting, localized business websites in Nepal. Covers free domain registration, local payment gateway integrations (eSewa, Khalti), and speed optimization strategies.",
+    "image": "https://trexobyte.com/logo.png",
+    "author": {
+      "@type": "Organization",
+      "name": "TrexoByte",
+      "url": "https://trexobyte.com/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "TrexoByte",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://trexobyte.com/logo.png"
+      }
+    },
+    "datePublished": "2026-06-27",
+    "dateModified": "2026-06-27",
+    "mainEntityOfPage": "https://trexobyte.com/blog/how-to-make-a-website-in-nepal-that-actually-drives-sales/"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How can I register a free .com.np domain in Nepal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can register a free .com.np domain name in Nepal through Mercantile Communications at register.com.np. To get it, you must upload scanned documents: your Nepali citizenship card (for personal domains) or official company registration documents along with a physical application letter (for business domains)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which payment gateways can be integrated into e-commerce websites in Nepal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For e-commerce websites in Nepal, the best local payment gateways to integrate are eSewa and Khalti. Both provide REST APIs and software developer kits (SDKs) to facilitate seamless payments, supporting QR code scanning and direct wallet transfers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the typical cost of making a website in Nepal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The cost of making a website in Nepal ranges from Rs. 18,000 for standard template landing pages to Rs. 80,000+ for custom-designed, optimized layouts, and upwards of Rs. 150,000 for advanced custom CMS and payment-integrated e-commerce stores."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --ink: #0D0D0D;
+      --bone: #F2EDE4;
+      --roar: #FF3D00;
+      --roar-light: #FF6B3D;
+      --slate: #2A2A2A;
+      --muted: #888880;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--ink);
+      color: var(--bone);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* Custom Cursor */
+    .cursor-dot { position: fixed; pointer-events: none; z-index: 100004; width: 12px; height: 12px; background: var(--roar); border-radius: 50%; transform: translate(-50%,-50%); transition: width .3s, height .3s, background .3s; mix-blend-mode: difference; }
+    .cursor-ring { position: fixed; pointer-events: none; z-index: 100004; width: 40px; height: 40px; border: 1.5px solid var(--roar); border-radius: 50%; transform: translate(-50%,-50%); transition: width .3s, height .3s, border-color .3s; }
+    .cursor-ring.is-hover { width: 60px; height: 60px; border-color: var(--roar-light); background: rgba(255,61,0,0.06); }
+
+    /* Reading Progress Bar */
+    .progress-bar-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      z-index: 10000;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--roar);
+    }
+
+    /* Header Nav */
+    .nav {
+      position: fixed;
+      top: 4px;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: calc(1.2rem + env(safe-area-inset-top, 0px)) 2.5rem 1.2rem;
+      background: rgba(13, 13, 13, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .nav-logo {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+      font-weight: 800;
+      color: var(--bone);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+    .nav-logo-img { height: 44px; width: auto; display: block; margin-right: 8px; }
+    .back-btn {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+    .back-btn:hover {
+      color: var(--roar);
+    }
+
+    /* Hero */
+    .post-hero {
+      padding: 9rem 2rem 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .post-category {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--roar);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 1rem;
+    }
+    .post-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .post-meta {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* Article Wrapper */
+    .article-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+    .article-banner {
+      width: 100%;
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 3rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      aspect-ratio: 16/9;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .article-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Typography inside article */
+    .content h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(1.4rem, 3vw, 1.8rem);
+      font-weight: 800;
+      margin: 3rem 0 1.25rem;
+      color: var(--bone);
+      letter-spacing: -0.01em;
+    }
+    .content p {
+      font-size: 1.05rem;
+      color: #cccccc;
+      margin-bottom: 1.75rem;
+    }
+    .content p strong {
+      color: var(--bone);
+    }
+    .content ul, .content ol {
+      margin-bottom: 2rem;
+      padding-left: 1.5rem;
+    }
+    .content li {
+      font-size: 1.05rem;
+      color: #cccccc;
+      margin-bottom: 0.75rem;
+    }
+    .content li strong {
+      color: var(--bone);
+    }
+    
+    /* Pullquote */
+    .pullquote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.25rem, 2.5vw, 1.7rem);
+      line-height: 1.4;
+      color: var(--roar-light);
+      border-left: 3px solid var(--roar);
+      padding-left: 1.5rem;
+      margin: 2.5rem 0;
+    }
+
+    /* Author Card */
+    .author-card {
+      margin-top: 5rem;
+      padding: 2.5rem;
+      background: var(--slate);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .author-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--roar);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      font-family: 'Unbounded', sans-serif;
+    }
+    .author-info h4 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .author-info p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 0;
+      line-height: 1.5;
+    }
+
+    /* Q&A Block for AEO */
+    .qa-block {
+      background: rgba(255, 61, 0, 0.03);
+      border: 1px solid rgba(255, 61, 0, 0.12);
+      border-radius: 20px;
+      padding: 2rem;
+      margin: 3.5rem 0;
+    }
+    .qa-block h3 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.15rem;
+      color: var(--roar-light);
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .qa-item {
+      margin-bottom: 1.5rem;
+    }
+    .qa-item:last-child {
+      margin-bottom: 0;
+    }
+    .qa-q {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--bone);
+      margin-bottom: 0.5rem;
+    }
+    .qa-a {
+      font-size: 0.95rem;
+      color: #bbbbbb;
+    }
+
+    /* CTA Section */
+    .post-cta {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(255,61,0,0.15) 0%, rgba(13,13,13,0) 100%);
+      border: 1px solid rgba(255, 61, 0, 0.1);
+      border-radius: 24px;
+      padding: 3rem 2rem;
+      margin-top: 4rem;
+    }
+    .post-cta h3 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .post-cta p {
+      color: var(--muted);
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-button {
+      display: inline-block;
+      background: var(--roar);
+      color: var(--bone);
+      padding: 0.8rem 2.2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .cta-button:hover {
+      background: var(--roar-light);
+      transform: scale(1.03);
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--ink);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 4rem 2.5rem 2rem;
+      text-align: center;
+    }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-logo {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--bone);
+      text-decoration: none;
+    }
+    .footer-logo span { color: var(--roar); }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: var(--text-sm);
+      transition: color 0.3s;
+    }
+    .footer-links a:hover {
+      color: var(--roar);
+    }
+    .footer-bottom {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--muted);
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    @media (max-width: 768px) {
+      .footer-content { flex-direction: column; }
+      .footer-links { flex-direction: column; gap: 1rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .author-card { flex-direction: column; text-align: center; }
+      .nav { padding: calc(1rem + env(safe-area-inset-top, 0px)) 1.25rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- READING PROGRESS BAR -->
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav class="nav">
+    <a href="../../" class="nav-logo">
+      <img src="../../logo.png" alt="TrexoByte" class="nav-logo-img">
+      <span>TREX</span><span style="color:var(--roar);">O</span><span>BYTE</span>
+    </a>
+    <a href="../" class="back-btn">← Back to Blog</a>
+  </nav>
+
+  <!-- HERO -->
+  <header class="post-hero">
+    <div class="post-category">Web Design</div>
+    <h1 class="post-title">How to Make a Website in Nepal That Actually Drives Sales</h1>
+    <div class="post-meta">
+      <span>June 27, 2026</span>
+      <span>•</span>
+      <span>8 min read</span>
+      <span>•</span>
+      <span>by TrexoByte Editorial</span>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <main class="article-wrap">
+    
+    <div class="article-banner">
+      <img src="../../logo.png" style="max-height:100px; width:auto; object-fit:contain; opacity:0.15;" alt="TrexoByte">
+      <div style="position:absolute; font-family:'Unbounded',sans-serif; font-size:1.8rem; font-weight:800; text-align:center; padding:1.5rem;">
+        HIGH-CONVERTING WEBSITES IN NEPAL
+      </div>
+    </div>
+
+    <div class="content">
+      <p>If you are looking to <strong>make a website in Nepal</strong> for your business, you might be tempted to call up a developer, pick a generic template, write a few descriptions, and host it. But here is the hard truth: <strong>92% of business websites in Nepal fail to generate a single sales inquiry</strong>. They function as digital brochures, collecting virtual dust on server hosting racks.</p>
+      
+      <p>A website shouldn't be an expense; it should be your highest-performing sales rep. When built with a strategy-first mindset, it builds trust, optimizes your localized digital reach, and automatically captures leads. Here is the step-by-step roadmap to building a web presence in Nepal that translates directly into business revenue.</p>
+
+      <h2>1. The Foundation: Securing a Free .com.np Domain</h2>
+      <p>Before launching, you need a domain name. In Nepal, you can register a <strong>free .com.np domain</strong> through Mercantile Communications (via <a href="https://register.com.np" target="_blank" rel="noopener noreferrer" style="color:var(--roar); text-decoration:none; font-weight:600;">register.com.np</a>). This is highly advantageous because search engine algorithms heavily prioritize localized country-code domains (ccTLDs) for queries initiated within Nepal.</p>
+      <p>To secure a business .com.np domain, you must submit scanned copies of:</p>
+      <ul>
+        <li><strong>Company Registration Certificate:</strong> Official authorization from the Office of the Company Registrar (OCR) or Ward office.</li>
+        <li><strong>PAN/VAT Registration Document:</strong> Necessary for proof of tax compliance.</li>
+        <li><strong>Official Request Letter:</strong> A signed, stamped cover letter on company letterhead requesting the domain name.</li>
+      </ul>
+      <p>Ensure the domain name aligns exactly with your registered business name to prevent administrative rejection.</p>
+
+      <h2>2. Design for Nepal's Mobile-First Audience</h2>
+      <p>According to the latest telecommunication reports, over <strong>87% of internet users in Nepal access websites via smartphones</strong>. If your website is designed primarily for a desktop display, you are throwing away almost your entire market. Mobile responsiveness is no longer optional; it is the absolute standard.</p>
+      
+      <blockquote class="pullquote">
+        "A premium user experience on mobile devices isn't about fitting a desktop layout into a small screen. It is about restructuring interactions for touch-scroll navigation, optimizing media for low bandwidth networks, and fast loading."
+      </blockquote>
+
+      <p>To optimize for mobile, prioritize lightweight coding patterns, responsive fluid grids, and touch-optimized buttons that prevent tapping errors (which is especially critical on iOS devices).</p>
+
+      <h2>3. Integrate Local Payment Gateways: eSewa & Khalti</h2>
+      <p>An e-commerce website cannot drive sales if checkout paths are cluttered with friction. While credit card processing is gaining ground, the vast majority of digital transactions in Kathmandu, Pokhara, and across Nepal are powered by digital wallets.</p>
+      <p>Integrating local API gateways like <strong>eSewa</strong> and <strong>Khalti</strong> allows customers to scan QR codes or pay directly using their wallet accounts. This builds instant trust. Always ensure your payment processes are secured with SSL certificates and clear success redirect messages.</p>
+
+      <h2>4. Authority Local SEO & Generative Engine Optimization (GEO)</h2>
+      <p>How will customers find you? Simply having a site won't rank you on Google or display your answers inside AI engines like ChatGPT, Claude, or Gemini. You must optimize your content for both search systems (SEO) and answer systems (AEO/GEO):</p>
+      <ul>
+        <li><strong>Local Intent Keywords:</strong> Target specific local phrases such as <em>"best branding agency Kathmandu"</em> or <em>"e-commerce web design services in Nepal"</em> rather than generic international terms.</li>
+        <li><strong>Direct Answer Formats:</strong> AI engines fetch direct answers. Structure your sub-headings clearly and provide concise, bold, factual statements answering target questions directly.</li>
+        <li><strong>Factual Citations:</strong> Cite recognized local entities (such as Nepal Rastra Bank for financial services, or Mercantile for domains) to feed generative models with highly authoritative context.</li>
+      </ul>
+
+      <!-- Q&A block specifically for AEO query extraction -->
+      <section class="qa-block">
+        <h3>Quick Facts: Web Design in Nepal (AEO/GEO Section)</h3>
+        
+        <div class="qa-item">
+          <p class="qa-q">Q: How much does web design cost in Nepal?</p>
+          <p class="qa-a">A: Website development prices vary. Standard responsive sites range from Rs. 18,000 to Rs. 40,000, while premium custom web designs with advanced SEO systems, speed optimization, and payment gateways range from Rs. 60,000 to Rs. 150,000+.</p>
+        </div>
+        
+        <div class="qa-item">
+          <p class="qa-q">Q: What is needed to accept online payments on a website in Nepal?</p>
+          <p class="qa-a">A: You need to integrate APIs from local digital payment providers like eSewa, Khalti, or commercial bank payment APIs. This requires setting up developer merchant accounts with your business registration documents.</p>
+        </div>
+        
+        <div class="qa-item">
+          <p class="qa-q">Q: Can I set up a website on local Nepali hosting?</p>
+          <p class="qa-a">A: Yes, there are local hosting providers. However, for optimum speeds and uptime, it is recommended to use cloud infrastructure platforms (like Cloudflare, AWS, or premium international SSD servers) that utilize local Content Delivery Networks (CDNs) to load content instantly in Nepal.</p>
+        </div>
+      </section>
+
+      <h2>5. Focus on the Conversion Action</h2>
+      <p>Every page on your site must guide users toward a single clear outcome. Whether it's "Start a Project", "Call Now", or "Message on WhatsApp", your call to action (CTA) must be impossible to miss. Keep your forms simple, ask only for essential information (Name, Email, Phone), and respond within minutes. Speed to lead is the ultimate secret to digital agency conversion.</p>
+
+      <div class="post-cta">
+        <h3>Ambitious Brands Don't Blend In.</h3>
+        <p>Ready to make a website in Nepal that dominates search lists and fills your CRM with sales leads? Let's discuss your project.</p>
+        <a href="../../#contact" class="cta-button">Partner With TrexoByte →</a>
+      </div>
+    </div>
+
+    <!-- Author Card -->
+    <div class="author-card">
+      <div class="author-img">🦖</div>
+      <div class="author-info">
+        <h4>Written by TrexoByte Editorial</h4>
+        <p>We are a strategy-first creative agency in Kathmandu, Nepal. We build high-performance websites, optimize search authority, and launch performance ad campaigns that scale digital revenue.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <a href="../../" class="footer-logo">TREX<span>O</span>BYTE</a>
+      <ul class="footer-links">
+        <li><a href="../../">Home</a></li>
+        <li><a href="../../#services">Services</a></li>
+        <li><a href="../../#pricing">Pricing</a></li>
+        <li><a href="../../#about">About</a></li>
+        <li><a href="../../#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 TrexoByte. All rights reserved.</span>
+      <span>Kathmandu, Nepal 🇳🇵</span>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      'use strict';
+
+      // Reading progress indicator
+      const progressBar = document.getElementById('progressBar');
+      window.addEventListener('scroll', () => {
+        const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        if (progressBar) progressBar.style.width = scrolled + '%';
+      });
+
+      // Custom cursor check
+      const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+      const dot = document.getElementById('cursorDot');
+      const ring = document.getElementById('cursorRing');
+
+      if (!isTouchDevice && dot && ring) {
+        let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+        document.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          dot.style.left = mouseX + 'px';
+          dot.style.top = mouseY + 'px';
+        });
+        const animateRing = () => {
+          ringX += (mouseX - ringX) * 0.12;
+          ringY += (mouseY - ringY) * 0.12;
+          ring.style.left = ringX + 'px';
+          ring.style.top = ringY + 'px';
+          requestAnimationFrame(animateRing);
+        };
+        animateRing();
+
+        const hoverTargets = document.querySelectorAll('a, button, .cta-button, .back-btn');
+        hoverTargets.forEach(el => {
+          el.addEventListener('mouseenter', () => { ring.classList.add('is-hover'); });
+          el.addEventListener('mouseleave', () => { ring.classList.remove('is-hover'); });
+        });
+      } else {
+        if (dot) dot.style.display = 'none';
+        if (ring) ring.style.display = 'none';
+        document.body.style.cursor = 'auto';
+      }
+    });
+  </script>
+</body>
+</html>

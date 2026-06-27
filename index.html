@@ -20,8 +20,8 @@
 <meta name="format-detection" content="telephone=no">
 
 <!-- Favicon & Placeholder Assets -->
-<link rel="icon" type="image/png" href="./logo.png">
-<link rel="apple-touch-icon" href="./logo.png">
+<link rel="icon" type="image/png" href="./favicon.png">
+<link rel="apple-touch-icon" href="./favicon.png">
 
 <!-- Technical SEO & Language Association -->
 <link rel="canonical" href="https://trexobyte.com/">
@@ -56,7 +56,7 @@
   "logo": "https://trexobyte.com/logo.png",
   "@id": "https://trexobyte.com/#organization",
   "url": "https://trexobyte.com/",
-  "telephone": "+9779843293239",
+  "telephone": "+9779768537012",
   "email": "info@trexobyte.com",
   "priceRange": "Rs. 18000 - Rs. 200000",
   "address": {
@@ -164,14 +164,14 @@
   --moss: #1A1F14;
   --slate: #2A2A2A;
   --muted: #888880;
-  --text-xs: 0.9rem;
-  --text-sm: 1rem;
-  --text-base: 1.15rem;
-  --text-lg: 1.3rem;
-  --text-xl: 1.7rem;
-  --text-2xl: 2.9rem;
-  --text-3xl: 4.6rem;
-  --text-hero: clamp(3.2rem, 7.5vw, 6.8rem);
+  --text-xs: 0.8rem;
+  --text-sm: 0.9rem;
+  --text-base: 1.05rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.55rem;
+  --text-2xl: 2.4rem;
+  --text-3xl: 3.6rem;
+  --text-hero: clamp(2.8rem, 6vw, 5.2rem);
 }
 
 *, *::before, *::after { margin:0;padding:0;box-sizing:border-box; }
@@ -197,6 +197,7 @@ a,button,input,textarea,select { cursor:none; }
 
 .preloader { position:fixed;inset:0;z-index:100000;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s; }
 .preloader.hidden { opacity:0;visibility:hidden; }
+.skip-preloader .preloader { display:none !important; opacity:0 !important; visibility:hidden !important; }
 .preloader-logo { font-family:'Unbounded',sans-serif;font-size:clamp(2rem,5vw,4rem);font-weight:800;color:var(--bone);letter-spacing:-0.02em;display:flex;align-items:center;gap:0; }
 .preloader-logo .char { display:inline-block;opacity:0;transform:translateY(40px); }
 .preloader-logo .dino { display:inline-block;opacity:0;transform:translateY(40px);font-size:clamp(1.5rem,4vw,3rem); }
@@ -207,8 +208,8 @@ a,button,input,textarea,select { cursor:none; }
 
 
 
-.nav { position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2.5rem;transition:background .4s,padding .4s,backdrop-filter .4s; }
-.nav.scrolled { background:rgba(13,13,13,0.92);backdrop-filter:blur(12px);padding:1.1rem 2.5rem; }
+.nav { position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;align-items:center;justify-content:space-between;padding:calc(1.5rem + env(safe-area-inset-top, 0px)) 2.5rem 1.5rem;transition:background .4s,padding .4s,backdrop-filter .4s, -webkit-backdrop-filter .4s; }
+.nav.scrolled { background:rgba(13,13,13,0.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);padding:calc(1.1rem + env(safe-area-inset-top, 0px)) 2.5rem 1.1rem; }
 .nav-logo { font-family:'Unbounded',sans-serif;font-size:clamp(1.1rem,2.2vw,1.4rem);font-weight:800;color:var(--bone);text-decoration:none;letter-spacing:0.02em;display:flex;align-items:center;gap:0; }
 .nav-logo-img { height:clamp(80px, 9vw, 100px);width:auto;display:block;margin-right:-10px; }
 .footer-logo-img { height:88px;width:auto;display:block; }
@@ -262,11 +263,11 @@ a,button,input,textarea,select { cursor:none; }
 .watermark.roar-en { top:-5%;right:-5%; }
 .watermark.roar-np { bottom:-5%;left:-5%;transform:rotate(-3deg); }
 
-.section { position:relative;z-index:2;padding:7rem 2rem;overflow:hidden;scroll-margin-top:100px; }
+.section { position:relative;z-index:2;padding:5.5rem 2rem;overflow:hidden;scroll-margin-top:100px; }
 .section-inner { max-width:1200px;margin:0 auto;position:relative;z-index:2; }
 .section-label { font-family:'Unbounded',sans-serif;font-size:var(--text-sm);font-weight:600;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.75rem; }
 .section-heading { font-family:'Unbounded',sans-serif;font-size:var(--text-hero);font-weight:800;line-height:1.1;letter-spacing:-0.02em;color:var(--bone);margin-bottom:2rem; }
-.section-heading--small { font-size:clamp(2.2rem,4.2vw,3.8rem); }
+.section-heading--small { font-size:clamp(1.8rem,3vw,2.6rem); }
 
 .intro { background:var(--bone);color:var(--ink); }
 .intro .section-inner { display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start; }
@@ -308,9 +309,9 @@ a,button,input,textarea,select { cursor:none; }
 
 .testimonials { background:var(--ink); }
 .testimonials .section-heading { font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(2rem,4vw,3.5rem);font-weight:400;color:var(--bone); }
-.testimonial-carousel { display:block;width:100%;margin-top:3rem;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;position:relative; }
+.testimonial-carousel { display:block;width:100%;margin-top:3rem;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;position:relative;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x;scrollbar-width:none; }
 .testimonial-carousel::-webkit-scrollbar { display:none; }
-.testimonial-track { display:flex;gap:1.5rem; }
+.testimonial-track { display:flex;gap:1.5rem;width:max-content;min-width:100%; }
 .testimonial-card { flex:0 0 calc(33.333% - 1rem);scroll-snap-align:start;background:var(--slate);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:2.5rem 2rem;min-height:220px;display:flex;flex-direction:column;justify-content:space-between; }
 @media (max-width: 1024px) {
   .testimonial-card { flex:0 0 calc(50% - 0.75rem); }
@@ -382,7 +383,7 @@ a,button,input,textarea,select { cursor:none; }
 .footer-col.social a { font-size:1.5rem; }
 .footer-bottom { max-width:1200px;margin:3rem auto 0;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem; }
 .footer-bottom span { font-size:1rem;color:var(--muted); }
-.footer-phone { font-family:'Unbounded',sans-serif;font-size:1.45rem;font-weight:700;color:var(--roar);margin-top:1rem;letter-spacing:.02em; }
+.footer-phone { font-family:'DM Sans',sans-serif;font-size:1.25rem;font-weight:700;color:var(--roar);margin-top:1rem;letter-spacing:.02em; }
 
 /* FAQ */
 .faq { background:var(--ink); }
@@ -434,7 +435,7 @@ a,button,input,textarea,select { cursor:none; }
 .modal-submit { width:100%;padding:1rem;background:var(--roar);color:var(--bone);border:none;border-radius:50px;font-family:'Unbounded',sans-serif;font-size:var(--text-sm);font-weight:700;cursor:pointer;transition:background .3s,transform .3s;letter-spacing:.05em;text-transform:uppercase; }
 .modal-submit:hover { background:var(--roar-light);transform:scale(1.02); }
 .modal-phone { text-align:center;margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.06); }
-.modal-phone a { font-family:'Unbounded',sans-serif;font-size:var(--text-xl);font-weight:700;color:var(--roar);text-decoration:none;letter-spacing:.02em; }
+.modal-phone a { font-family:'DM Sans',sans-serif;font-size:var(--text-xl);font-weight:700;color:var(--roar);text-decoration:none;letter-spacing:.02em; }
 .modal-phone a:hover { color:var(--roar-light); }
 .modal-phone-label { font-size:var(--text-xs);color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem; }
 
@@ -476,7 +477,7 @@ a,button,input,textarea,select { cursor:none; }
   .section { padding:4rem 1.25rem; }
   .services-grid { grid-template-columns:1fr 1fr;gap:.5rem; }
   .service-card { padding:1.25rem .875rem; }
-  .nav { padding:1rem 1.25rem; }
+  .nav { padding:calc(1rem + env(safe-area-inset-top, 0px)) 1.25rem 1rem; }
 }
 
 @media (prefers-reduced-motion:reduce) {
@@ -576,10 +577,10 @@ a,button,input,textarea,select { cursor:none; }
 /* Responsive adjustments for small-to-medium laptops */
 @media (max-width: 1440px) {
   :root {
-    --text-3xl: clamp(2.5rem, 4.5vw, 3.8rem);
-    --text-2xl: clamp(1.8rem, 3vw, 2.4rem);
-    --text-xl: clamp(1.3rem, 2vw, 1.5rem);
-    --text-hero: clamp(2.4rem, 5.2vw, 4.2rem);
+    --text-3xl: clamp(2rem, 3.5vw, 2.8rem);
+    --text-2xl: clamp(1.5rem, 2.5vw, 1.9rem);
+    --text-xl: clamp(1.1rem, 1.8vw, 1.3rem);
+    --text-hero: clamp(2.2rem, 4.5vw, 3.5rem);
   }
   .section {
     padding: 5rem 2rem;
@@ -627,6 +628,22 @@ a,button,input,textarea,select { cursor:none; }
   }
 }
 </style>
+<script>
+  (function() {
+    try {
+      const navTiming = typeof performance !== 'undefined' && performance.getEntriesByType('navigation')[0];
+      let isReload = false;
+      if (navTiming) {
+        isReload = navTiming.type === 'reload';
+      } else if (typeof performance !== 'undefined' && performance.navigation) {
+        isReload = performance.navigation.type === 1;
+      }
+      if (sessionStorage.getItem('trexobyte_visited') && !isReload) {
+        document.documentElement.classList.add('skip-preloader');
+      }
+    } catch (e) {}
+  })();
+</script>
 </head>
 <body>
 
@@ -666,6 +683,7 @@ a,button,input,textarea,select { cursor:none; }
     <li><a href="#services" data-nav>Services</a></li>
     <li><a href="#pricing" data-nav>Pricing</a></li>
     <li><a href="#about" data-nav>About</a></li>
+    <li><a href="/blog/">Blog</a></li>
     <li><a href="#contact" data-nav>Contact</a></li>
     <li><a href="#contact" class="nav-cta modal-trigger" data-modal="contactModal">Let's Roar →</a></li>
   </ul>
@@ -678,6 +696,7 @@ a,button,input,textarea,select { cursor:none; }
   <a href="#services" data-nav>Services</a>
   <a href="#pricing" data-nav>Pricing</a>
   <a href="#about" data-nav>About</a>
+  <a href="/blog/">Blog</a>
   <a href="#contact" data-nav>Contact</a>
   <a href="#contact" class="nav-cta modal-trigger" data-modal="contactModal" style="font-size:1.2rem;padding:.75rem 2rem;">Let's Roar →</a>
 </div>
@@ -787,7 +806,7 @@ a,button,input,textarea,select { cursor:none; }
   <div class="section-inner">
     <p class="section-label">CLIENTS LOVE US</p>
     <h2 class="section-heading" style="font-size:clamp(1.75rem,3.5vw,3rem);">Success Stories from Nepali Businesses</h2>
-    <div class="testimonial-carousel">
+    <div class="testimonial-carousel" data-lenis-prevent>
       <div class="testimonial-track" id="testimonialTrack">
         <div class="testimonial-card"><p class="testimonial-text">"TrexoByte completely transformed how we show up online. Our organic inquiries doubled within 60 days."</p><p class="testimonial-author"><strong>Priya S.</strong>, Founder, Yala Retreats</p></div>
         <div class="testimonial-card"><p class="testimonial-text">"Finally an agency that gets it. They don't just execute, they think with you."</p><p class="testimonial-author"><strong>Rajan T.</strong>, CEO, KantiMart</p></div>
@@ -948,7 +967,7 @@ a,button,input,textarea,select { cursor:none; }
     <p class="cta-sub">Let's build something the world can't ignore.</p>
     <div class="cta-buttons">
       <a href="#contact" class="cta-btn cta-btn-dark modal-trigger" data-modal="contactModal">Start a Project →</a>
-      <a href="https://wa.me/9779843293239" target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn-outline">Message us on WhatsApp →</a>
+      <a href="https://wa.me/9779768537012" target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn-outline">Message us on WhatsApp →</a>
     </div>
   </div>
 </section>
@@ -960,11 +979,11 @@ a,button,input,textarea,select { cursor:none; }
       <a href="#hero" class="footer-logo" id="footerLogo"><img src="./logo.png" alt="TrexoByte" class="footer-logo-img"></a>
       <p class="footer-tagline">Creative. Strategic. Digital. Unforgettable.</p>
       <p class="footer-cta">Ready to make some noise?<br><a href="mailto:info@trexobyte.com">info@trexobyte.com</a></p>
-      <p class="footer-phone">+977 9843293239 / +977 9708764098</p>
+      <p class="footer-phone">+977 9768537012 / +977 9708764098</p>
     </div>
     <div class="footer-col">
       <h4>Navigate</h4>
-      <a href="#hero">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a>
+      <a href="#hero">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="/blog/">Blog</a><a href="#contact">Contact</a>
     </div>
     <div class="footer-col">
       <h4>Services</h4>
@@ -973,7 +992,7 @@ a,button,input,textarea,select { cursor:none; }
     <div class="footer-col social">
       <h4>Connect</h4>
       <div class="social-links">
-        <a href="#" target="_blank">Instagram</a>
+        <a href="https://www.instagram.com/trexobyte" target="_blank" rel="noopener noreferrer">Instagram</a>
         <a href="#" target="_blank">Facebook</a>
         <a href="https://www.linkedin.com/company/trexobyte/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
@@ -1022,7 +1041,7 @@ a,button,input,textarea,select { cursor:none; }
       <div class="modal-phone">
         <p class="modal-phone-label">Or call us directly</p>
         <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem;">
-          <a href="tel:+9779843293239">+977 9843293239</a>
+          <a href="tel:+9779768537012">+977 9768537012</a>
           <a href="tel:+9779708764098">+977 9708764098</a>
         </div>
       </div>
@@ -1076,23 +1095,131 @@ document.addEventListener('DOMContentLoaded', () => {
   const preloaderProgress = document.getElementById('preloaderProgress');
   const preloaderBar = document.getElementById('preloaderBar');
 
-  if (!prefersReducedMotion) {
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    tl.to(preloaderDino, { y: 0, opacity: 1, duration: 0.5, delay: 0.2 })
-      .to(preloaderChars, { y: 0, opacity: 1, duration: 0.4, stagger: 0.06 }, '-=0.2')
-      .to(preloaderTagline, { opacity: 1, duration: 0.5 }, '-=0.2')
-      .to(preloaderProgress, { opacity: 1, duration: 0.3 }, '-=0.3')
-      .to(preloaderBar, { width: '100%', duration: 1.2, ease: 'power2.inOut' })
-      .to(preloader, { opacity: 0, visibility: 'hidden', duration: 0.6, delay: 0.3, onComplete: () => { initSite(); } });
+  function showElementsFallback(selector) {
+    document.querySelectorAll(selector).forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+      if (el.style.visibility) el.style.visibility = 'visible';
+    });
+  }
+
+  // Session check to prevent repeating preloader
+  let isReload = false;
+  try {
+    const navTiming = typeof performance !== 'undefined' && performance.getEntriesByType('navigation')[0];
+    if (navTiming) {
+      isReload = navTiming.type === 'reload';
+    } else if (typeof performance !== 'undefined' && performance.navigation) {
+      isReload = performance.navigation.type === 1; // 1 is TYPE_RELOAD
+    }
+  } catch (e) {}
+
+  let hasVisited = false;
+  try {
+    hasVisited = sessionStorage.getItem('trexobyte_visited');
+  } catch (e) {
+    console.warn('sessionStorage lookup failed or was denied:', e);
+  }
+
+  const hasSkipClass = document.documentElement.classList.contains('skip-preloader');
+
+  if (hasSkipClass) {
+    initCursor();
+    try { initSite(); } catch (e) { console.warn('initSite failed:', e); initCursor(); }
   } else {
-    preloader.style.display = 'none';
-    initSite();
+    try {
+      sessionStorage.setItem('trexobyte_visited', 'true');
+    } catch (e) {}
+    if (!prefersReducedMotion && typeof gsap !== 'undefined') {
+      try {
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+        tl.to(preloaderDino, { y: 0, opacity: 1, duration: 0.5, delay: 0.2 })
+          .to(preloaderChars, { y: 0, opacity: 1, duration: 0.4, stagger: 0.06 }, '-=0.2')
+          .to(preloaderTagline, { opacity: 1, duration: 0.5 }, '-=0.2')
+          .to(preloaderProgress, { opacity: 1, duration: 0.3 }, '-=0.3')
+          .to(preloaderBar, { width: '100%', duration: 1.2, ease: 'power2.inOut' })
+          .to(preloader, { opacity: 0, visibility: 'hidden', duration: 0.6, delay: 0.3, onComplete: () => { initSite(); } });
+      } catch (e) {
+        console.warn('GSAP preloader timeline failed, bypassing:', e);
+        if (preloader) {
+          preloader.style.display = 'none';
+          preloader.classList.add('hidden');
+        }
+        initSite();
+      }
+    } else {
+      if (preloader) {
+        preloader.style.display = 'none';
+        preloader.classList.add('hidden');
+      }
+      initSite();
+    }
   }
 
   let isScrolling = false;
+  let anchorScrolling = false;
+  let lenis;
   const resetScrollState = () => {
-    ScrollTrigger.refresh();
+    if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
   };
+
+  function getNavOffset() {
+    const navEl = document.getElementById('nav');
+    return navEl ? navEl.getBoundingClientRect().height + 12 : 100;
+  }
+
+  function getScrollTargetY(el) {
+    const rect = el.getBoundingClientRect();
+    const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+    return Math.max(0, rect.top + scrollY - getNavOffset());
+  }
+
+  function scrollToElement(target) {
+    const runScroll = () => {
+      anchorScrolling = true;
+      isScrolling = true;
+      const targetY = getScrollTargetY(target);
+
+      if (lenis) {
+        lenis.scrollTo(targetY, {
+          offset: 0,
+          duration: 0.85,
+          easing: (t) => 1 - Math.pow(1 - t, 3),
+          force: true,
+          lock: true,
+          onComplete: () => {
+            const finalY = getScrollTargetY(target);
+            const currentY = window.scrollY || document.documentElement.scrollTop || 0;
+            if (Math.abs(currentY - finalY) > 2) {
+              lenis.scrollTo(finalY, { immediate: true, force: true });
+            }
+            isScrolling = false;
+            anchorScrolling = false;
+            requestAnimationFrame(() => resetScrollState());
+          }
+        });
+      } else {
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
+        setTimeout(() => {
+          window.scrollTo({ top: getScrollTargetY(target), behavior: 'auto' });
+          isScrolling = false;
+          anchorScrolling = false;
+          resetScrollState();
+        }, 850);
+      }
+    };
+
+    const mobileMenuEl = document.getElementById('mobileMenu');
+    const menuToggleEl = document.getElementById('menuToggle');
+    if (mobileMenuEl && mobileMenuEl.classList.contains('open') && menuToggleEl) {
+      menuToggleEl.classList.remove('open');
+      mobileMenuEl.classList.remove('open');
+      document.body.style.overflow = '';
+      requestAnimationFrame(runScroll);
+    } else {
+      runScroll();
+    }
+  }
 
   const pricingData = {
     branding: {
@@ -1170,40 +1297,194 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  function initCursor() {
+    if (window._cursorRAF) { cancelAnimationFrame(window._cursorRAF); window._cursorRAF = null; }
+    var oldStyle = document.getElementById('cursorFallbackStyle');
+    if (oldStyle) oldStyle.parentNode.removeChild(oldStyle);
+    if (!prefersReducedMotion && !isLowEnd && !('ontouchstart' in window)) {
+      var dot = document.getElementById('cursorDot');
+      var ring = document.getElementById('cursorRing');
+      var icon = document.getElementById('cursorIcon');
+      if (!dot || !ring || !icon) return;
+      [dot, ring, icon].forEach(function(el) {
+        el.style.display = '';
+        el.style.visibility = 'visible';
+        if (el.parentNode !== document.documentElement) {
+          document.documentElement.appendChild(el);
+        }
+      });
+      document.body.style.cursor = 'none';
+      if (!window._cursorPos) {
+        window._cursorPos = {
+          mx: window.innerWidth / 2,
+          my: window.innerHeight / 2,
+          rx: window.innerWidth / 2,
+          ry: window.innerHeight / 2
+        };
+      }
+      window._cursorRefs = { dot: dot, ring: ring, icon: icon };
+      var pos = window._cursorPos;
+      dot.style.left = pos.mx + 'px'; dot.style.top = pos.my + 'px';
+      ring.style.left = pos.rx + 'px'; ring.style.top = pos.ry + 'px';
+      icon.style.left = pos.mx + 'px'; icon.style.top = pos.my + 'px';
+      if (!window._cursorOnMove) {
+        window._cursorOnMove = function(e) {
+          var p = window._cursorPos;
+          var refs = window._cursorRefs;
+          if (!refs) return;
+          p.mx = e.clientX; p.my = e.clientY;
+          refs.dot.style.left = p.mx + 'px'; refs.dot.style.top = p.my + 'px';
+          refs.icon.style.left = p.mx + 'px'; refs.icon.style.top = p.my + 'px';
+        };
+      }
+      document.removeEventListener('mousemove', window._cursorOnMove);
+      document.addEventListener('mousemove', window._cursorOnMove);
+      function animRing() {
+        var p = window._cursorPos;
+        var refs = window._cursorRefs;
+        if (!refs) return;
+        p.rx += (p.mx - p.rx) * 0.12;
+        p.ry += (p.my - p.ry) * 0.12;
+        refs.ring.style.left = p.rx + 'px';
+        refs.ring.style.top = p.ry + 'px';
+        window._cursorRAF = requestAnimationFrame(animRing);
+      }
+      animRing();
+      if (!window._cursorHoverBound) {
+        window._cursorHoverBound = true;
+        var hoverSelector = 'a, button, .service-card, .pricing-card, .roar-reason, .industry-tag, .nav-cta, .modal-tab, .modal-close, .modal-content input, .modal-content select, .modal-content textarea, .modal-content label';
+        document.addEventListener('mouseover', function(e) {
+          var refs = window._cursorRefs;
+          if (!refs || !e.target.closest(hoverSelector)) return;
+          refs.ring.classList.add('is-hover');
+          refs.icon.classList.add('is-visible');
+        });
+        document.addEventListener('mouseout', function(e) {
+          var refs = window._cursorRefs;
+          if (!refs || !e.target.closest(hoverSelector)) return;
+          refs.ring.classList.remove('is-hover');
+          refs.icon.classList.remove('is-visible');
+        });
+        document.addEventListener('click', function(ce) {
+          var rip = document.createElement('div');
+          rip.className = 'cursor-ripple';
+          rip.style.left = ce.clientX + 'px';
+          rip.style.top = ce.clientY + 'px';
+          document.body.appendChild(rip);
+          setTimeout(function() { rip.remove(); }, 800);
+        });
+      }
+    } else {
+      var dot = document.getElementById('cursorDot');
+      var ring = document.getElementById('cursorRing');
+      var icon = document.getElementById('cursorIcon');
+      if (dot) dot.style.display = 'none';
+      if (ring) ring.style.display = 'none';
+      if (icon) icon.style.display = 'none';
+      var st = document.createElement('style');
+      st.id = 'cursorFallbackStyle';
+      st.innerHTML = 'body { cursor: auto !important; } a, button, select, .modal-tab, .modal-close, .pricing-btn, .industry-tag, .nav-cta, [data-nav] { cursor: pointer !important; } input, textarea { cursor: text !important; } .cursor-dot, .cursor-ring, .cursor-icon { display: none !important; }';
+      document.head.appendChild(st);
+    }
+  }
   function initSite() {
+    initCursor();
+
     // 2. Conditional Smooth Scroll Fallback
-    let lenis;
-    if (!prefersReducedMotion && !isLowEnd) {
-      lenis = new Lenis({ duration: 0.9, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true, wheelMultiplier: 0.8, touchMultiplier: 1.8, infinite: false });
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add((time) => lenis.raf(time * 1000));
-      gsap.ticker.lagSmoothing(0);
+    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    if (!prefersReducedMotion && !isLowEnd && !isTouchDevice && typeof Lenis !== 'undefined') {
+      try {
+        lenis = new Lenis({ duration: 0.9, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true, wheelMultiplier: 0.8, touchMultiplier: 1.8, infinite: false });
+        lenis.on('scroll', ScrollTrigger.update);
+        if (typeof gsap !== 'undefined') {
+          gsap.ticker.add((time) => lenis.raf(time * 1000));
+          gsap.ticker.lagSmoothing(0);
+        }
+      } catch (e) {
+        console.warn('Lenis scroll setup failed:', e);
+      }
     }
 
-    if (!prefersReducedMotion) {
-      gsap.to('.hero-line .word', { y: 0, opacity: 1, duration: 0.8, stagger: 0.06, ease: 'power3.out', delay: 0.6 });
-      gsap.to('.hero-sub', { y: 0, opacity: 1, duration: 0.6, delay: 1.2, ease: 'power2.out' });
-      gsap.to('#scrollIndicator', { opacity: 1, duration: 0.8, delay: 1.6, ease: 'power2.out' });
-      gsap.to('#heroCtaRow', { y: 0, opacity: 1, duration: 0.6, delay: 1.4, ease: 'power2.out' });
-    } else {
-      gsap.set('.hero-line .word', { y: 0, opacity: 1 }); gsap.set('.hero-sub', { y: 0, opacity: 1 }); gsap.set('#scrollIndicator', { opacity: 1 }); gsap.set('#heroCtaRow', { y: 0, opacity: 1 });
+    if (typeof gsap === 'undefined') {
+      showElementsFallback('.hero-line .word');
+      showElementsFallback('.hero-sub');
+      showElementsFallback('#scrollIndicator');
+      showElementsFallback('#heroCtaRow');
+      showElementsFallback('.service-card');
+      showElementsFallback('.intro-p');
+      showElementsFallback('.roar-reason');
+      showElementsFallback('.process-step');
+      showElementsFallback('.pricing-card');
+    }
+
+    if (!prefersReducedMotion && typeof gsap !== 'undefined') {
+      try {
+        gsap.to('.hero-line .word', { y: 0, opacity: 1, duration: 0.8, stagger: 0.06, ease: 'power3.out', delay: 0.6 });
+        gsap.to('.hero-sub', { y: 0, opacity: 1, duration: 0.6, delay: 1.2, ease: 'power2.out' });
+        gsap.to('#scrollIndicator', { opacity: 1, duration: 0.8, delay: 1.6, ease: 'power2.out' });
+        gsap.to('#heroCtaRow', { y: 0, opacity: 1, duration: 0.6, delay: 1.4, ease: 'power2.out' });
+      } catch (e) {
+        console.warn('GSAP hero animations failed:', e);
+      }
+    } else if (typeof gsap !== 'undefined') {
+      try {
+        gsap.set('.hero-line .word', { y: 0, opacity: 1 }); gsap.set('.hero-sub', { y: 0, opacity: 1 }); gsap.set('#scrollIndicator', { opacity: 1 }); gsap.set('#heroCtaRow', { y: 0, opacity: 1 });
+      } catch (e) {}
     }
 
     const nav = document.getElementById('nav');
-    if (!prefersReducedMotion) { ScrollTrigger.create({ start: 'top -80', onUpdate: (self) => { nav.classList.toggle('scrolled', self.progress > 0); } }); }
+    if (!prefersReducedMotion && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      try {
+        ScrollTrigger.create({ start: 'top -80', onUpdate: (self) => { nav.classList.toggle('scrolled', self.progress > 0); } });
+      } catch (e) {}
+    }
 
-    if (!prefersReducedMotion) { document.querySelectorAll('.section-heading, .section-label').forEach((el) => { gsap.from(el, { y: 40, opacity: 0, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' } }); }); }
+    if (!prefersReducedMotion && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      try {
+        document.querySelectorAll('.section-heading, .section-label').forEach((el) => { gsap.from(el, { y: 40, opacity: 0, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' } }); });
+      } catch (e) {}
+    }
 
-    if (!prefersReducedMotion) { gsap.to('.service-card', { y: 0, opacity: 1, duration: 0.6, stagger: 0.08, ease: 'power2.out', scrollTrigger: { trigger: '#servicesGrid', start: 'top 80%', toggleActions: 'play none none reverse' } }); } else { gsap.set('.service-card', { y: 0, opacity: 1 }); }
-    if (!prefersReducedMotion) { gsap.to('.intro-p', { y: 0, opacity: 1, duration: 0.6, stagger: 0.15, ease: 'power2.out', scrollTrigger: { trigger: '.intro-text', start: 'top 80%', toggleActions: 'play none none reverse' } }); } else { gsap.set('.intro-p', { y: 0, opacity: 1 }); }
-    if (!prefersReducedMotion) { gsap.to('.roar-reason', { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power2.out', scrollTrigger: { trigger: '#roarReasons', start: 'top 80%', toggleActions: 'play none none reverse' } }); } else { gsap.set('.roar-reason', { y: 0, opacity: 1 }); }
+    if (!prefersReducedMotion && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      try {
+        gsap.to('.service-card', { y: 0, opacity: 1, duration: 0.6, stagger: 0.08, ease: 'power2.out', scrollTrigger: { trigger: '#servicesGrid', start: 'top 80%', toggleActions: 'play none none reverse' } });
+      } catch (e) {}
+    } else if (typeof gsap !== 'undefined') {
+      try { gsap.set('.service-card', { y: 0, opacity: 1 }); } catch (e) {}
+    }
+    
+    if (!prefersReducedMotion && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      try {
+        gsap.to('.intro-p', { y: 0, opacity: 1, duration: 0.6, stagger: 0.15, ease: 'power2.out', scrollTrigger: { trigger: '.intro-text', start: 'top 80%', toggleActions: 'play none none reverse' } });
+      } catch (e) {}
+    } else if (typeof gsap !== 'undefined') {
+      try { gsap.set('.intro-p', { y: 0, opacity: 1 }); } catch (e) {}
+    }
+    
+    if (!prefersReducedMotion && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      try {
+        gsap.to('.roar-reason', { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power2.out', scrollTrigger: { trigger: '#roarReasons', start: 'top 80%', toggleActions: 'play none none reverse' } });
+      } catch (e) {}
+    } else if (typeof gsap !== 'undefined') {
+      try { gsap.set('.roar-reason', { y: 0, opacity: 1 }); } catch (e) {}
+    }
 
-    if (!prefersReducedMotion) {
-      gsap.to('.process-step', { y: 0, opacity: 1, duration: 0.6, stagger: 0.12, ease: 'power2.out', scrollTrigger: { trigger: '#processTimeline', start: 'top 75%', toggleActions: 'play none none reverse' } });
-      ScrollTrigger.create({ trigger: '#processTimeline', start: 'top 75%', end: 'bottom 20%', onUpdate: (self) => { const fill = document.getElementById('timelineFill'); if (fill) { if (window.innerWidth > 768) fill.style.width = self.progress * 100 + '%'; else fill.style.height = self.progress * 100 + '%'; } const steps = document.querySelectorAll('.process-step'); const totalSteps = steps.length; const activeIndex = Math.min(Math.floor(self.progress * totalSteps), totalSteps - 1); steps.forEach((step, i) => step.classList.toggle('active', i <= activeIndex)); } });
-    } else { gsap.set('.process-step', { y: 0, opacity: 1 }); }
+    if (!prefersReducedMotion && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      try {
+        gsap.to('.process-step', { y: 0, opacity: 1, duration: 0.6, stagger: 0.12, ease: 'power2.out', scrollTrigger: { trigger: '#processTimeline', start: 'top 75%', toggleActions: 'play none none reverse' } });
+        ScrollTrigger.create({ trigger: '#processTimeline', start: 'top 75%', end: 'bottom 20%', onUpdate: (self) => { const fill = document.getElementById('timelineFill'); if (fill) { if (window.innerWidth > 768) fill.style.width = self.progress * 100 + '%'; else fill.style.height = self.progress * 100 + '%'; } const steps = document.querySelectorAll('.process-step'); const totalSteps = steps.length; const activeIndex = Math.min(Math.floor(self.progress * totalSteps), totalSteps - 1); steps.forEach((step, i) => step.classList.toggle('active', i <= activeIndex)); } });
+      } catch (e) {}
+    } else if (typeof gsap !== 'undefined') {
+      try { gsap.set('.process-step', { y: 0, opacity: 1 }); } catch (e) {}
+    }
 
-    if (!prefersReducedMotion) { gsap.to('.pricing-card', { y: 0, opacity: 1, duration: 0.6, stagger: 0.15, ease: 'power2.out', scrollTrigger: { trigger: '#pricingGrid', start: 'top 80%', toggleActions: 'play none none reverse' } }); } else { gsap.set('.pricing-card', { y: 0, opacity: 1 }); }
+    if (!prefersReducedMotion && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      try {
+        gsap.to('.pricing-card', { y: 0, opacity: 1, duration: 0.6, stagger: 0.15, ease: 'power2.out', scrollTrigger: { trigger: '#pricingGrid', start: 'top 80%', toggleActions: 'play none none reverse' } });
+      } catch (e) {}
+    } else if (typeof gsap !== 'undefined') {
+      try { gsap.set('.pricing-card', { y: 0, opacity: 1 }); } catch (e) {}
+    }
 
     // PRICING TABS
     const tabs = document.querySelectorAll('.pricing-tab');
@@ -1235,7 +1516,7 @@ document.addEventListener('DOMContentLoaded', () => {
           pCardPremium.style.display = 'none';
           grid.classList.add('two-cols');
         }
-        ScrollTrigger.refresh();
+        if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
       }
     }
     tabs.forEach(tab => { tab.addEventListener('click', () => switchPricing(tab.dataset.category)); });
@@ -1260,7 +1541,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    carousel.addEventListener('scroll', updateActiveDot);
+    if (carousel) carousel.addEventListener('scroll', updateActiveDot);
 
     dots$$.forEach(dot => {
       dot.addEventListener('click', () => {
@@ -1294,11 +1575,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    carousel.addEventListener('mouseenter', () => clearInterval(testimonialInterval));
-    carousel.addEventListener('mouseleave', startTestimonialAuto);
-    carousel.addEventListener('touchstart', () => clearInterval(testimonialInterval), { passive: true });
-
-    startTestimonialAuto();
+    if (carousel) {
+      carousel.addEventListener('mouseenter', () => clearInterval(testimonialInterval));
+      carousel.addEventListener('mouseleave', startTestimonialAuto);
+      carousel.addEventListener('touchstart', () => clearInterval(testimonialInterval), { passive: true });
+      startTestimonialAuto();
+    }
     let resizeTimer;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
@@ -1313,65 +1595,18 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 200);
     });
 
-    // FAQ Accordion Hover (PC) & Click (Mobile/Keyboard)
+    // FAQ Accordion — click/tap to toggle on all devices
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach(item => {
-      // Hover events for mouse pointer
-      item.addEventListener('mouseenter', () => {
-        faqItems.forEach(i => {
-          if (i !== item) i.classList.remove('active');
-        });
-        item.classList.add('active');
-      });
-
-      item.addEventListener('mouseleave', () => {
-        item.classList.remove('active');
-      });
-
-      // Click event for touch screens and keyboard accessibility
       const question = item.querySelector('.faq-question');
+      if (!question) return;
       question.addEventListener('click', (e) => {
-        // Only toggle on touch taps or keyboard activation (where e.pointerType is not 'mouse')
-        if (e.pointerType !== 'mouse') {
-          const isActive = item.classList.contains('active');
-          faqItems.forEach(i => i.classList.remove('active'));
-          if (!isActive) {
-            item.classList.add('active');
-          }
-        }
+        e.preventDefault();
+        const isActive = item.classList.contains('active');
+        faqItems.forEach(i => i.classList.remove('active'));
+        if (!isActive) item.classList.add('active');
       });
     });
-
-    // 6. Conditional Custom Cursor Fallback
-    if (!prefersReducedMotion && !isLowEnd && !('ontouchstart' in window)) {
-      const dot = document.getElementById('cursorDot');
-      const ring = document.getElementById('cursorRing');
-      const icon = document.getElementById('cursorIcon');
-      let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-      document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px'; icon.style.left = mouseX + 'px'; icon.style.top = mouseY + 'px'; });
-      function animateRing() { ringX += (mouseX - ringX) * 0.12; ringY += (mouseY - ringY) * 0.12; ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px'; requestAnimationFrame(animateRing); }
-      animateRing();
-      const hoverTargets = document.querySelectorAll('a, button, .service-card, .pricing-card, .roar-reason, .industry-tag, .nav-cta, .modal-tab, .modal-close, .modal-content input, .modal-content select, .modal-content textarea, .modal-content label');
-      hoverTargets.forEach(el => { el.addEventListener('mouseenter', () => { ring.classList.add('is-hover'); icon.classList.add('is-visible'); }); el.addEventListener('mouseleave', () => { ring.classList.remove('is-hover'); icon.classList.remove('is-visible'); }); });
-      document.addEventListener('click', (e) => { const ripple = document.createElement('div'); ripple.className = 'cursor-ripple'; ripple.style.left = e.clientX + 'px'; ripple.style.top = e.clientY + 'px'; document.body.appendChild(ripple); setTimeout(() => ripple.remove(), 800); });
-    } else {
-      // Hide custom cursor elements and restore browser-native cursors
-      const dot = document.getElementById('cursorDot');
-      const ring = document.getElementById('cursorRing');
-      const icon = document.getElementById('cursorIcon');
-      if (dot) dot.style.display = 'none';
-      if (ring) ring.style.display = 'none';
-      if (icon) icon.style.display = 'none';
-
-      const style = document.createElement('style');
-      style.innerHTML = `
-        body { cursor: auto !important; }
-        a, button, select, .modal-tab, .modal-close, .pricing-btn, .industry-tag, .nav-cta, [data-nav] { cursor: pointer !important; }
-        input, textarea { cursor: text !important; }
-        .cursor-dot, .cursor-ring, .cursor-icon { display: none !important; }
-      `;
-      document.head.appendChild(style);
-    }
 
     // MOBILE MENU
     const menuToggle = document.getElementById('menuToggle');
@@ -1449,14 +1684,14 @@ document.addEventListener('DOMContentLoaded', () => {
       contactModal.classList.add('active');
       document.body.style.overflow = 'hidden';
       if (lenis) lenis.stop();
-      if (!prefersReducedMotion) {
+      if (!prefersReducedMotion && typeof gsap !== 'undefined') {
         gsap.fromTo('.contact-modal', { scale: 0.9, y: 20, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 0.5, ease: 'back.out(1.7)' });
         gsap.fromTo('.contact-modal-overlay', { opacity: 0 }, { opacity: 1, duration: 0.4 });
       }
     }
 
     function closeModal() {
-      if (!prefersReducedMotion) {
+      if (!prefersReducedMotion && typeof gsap !== 'undefined') {
         gsap.to('.contact-modal', { scale: 0.9, y: 20, opacity: 0, duration: 0.3, ease: 'power2.in' });
         gsap.to('.contact-modal-overlay', { opacity: 0, duration: 0.3, onComplete: () => { contactModal.classList.remove('active'); document.body.style.overflow = ''; if (lenis) lenis.start(); } });
       } else {
@@ -1508,11 +1743,15 @@ document.addEventListener('DOMContentLoaded', () => {
       contactForm.addEventListener('submit', function (e) {
         e.preventDefault();
         
-        modalSubmitBtn.disabled = true;
-        modalSubmitBtn.textContent = 'Submitting...';
-        formStatus.style.display = 'block';
-        formStatus.style.color = 'var(--muted)';
-        formStatus.textContent = 'Sending your message...';
+        if (modalSubmitBtn) {
+          modalSubmitBtn.disabled = true;
+          modalSubmitBtn.textContent = 'Submitting...';
+        }
+        if (formStatus) {
+          formStatus.style.display = 'block';
+          formStatus.style.color = 'var(--muted)';
+          formStatus.textContent = 'Sending your message...';
+        }
 
         const formData = new FormData(contactForm);
         const object = Object.fromEntries(formData);
@@ -1529,73 +1768,96 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(async (response) => {
           let res = await response.json();
           if (response.status === 200) {
-            formStatus.style.color = '#25D366';
-            formStatus.textContent = 'Thank you! Your inquiry has been sent successfully.';
+            if (formStatus) {
+              formStatus.style.color = '#25D366';
+              formStatus.textContent = 'Thank you! Your inquiry has been sent successfully.';
+            }
             contactForm.reset();
             setTimeout(() => {
               closeModal();
-              formStatus.style.display = 'none';
-              formStatus.textContent = '';
+              if (formStatus) {
+                formStatus.style.display = 'none';
+                formStatus.textContent = '';
+              }
             }, 3000);
           } else {
-            console.log(response);
-            formStatus.style.color = 'var(--roar)';
-            formStatus.textContent = res.message || 'Something went wrong. Please try again.';
+            if (formStatus) {
+              formStatus.style.color = 'var(--roar)';
+              formStatus.textContent = res.message || 'Something went wrong. Please try again.';
+            }
           }
         })
         .catch((error) => {
           console.log(error);
-          formStatus.style.color = 'var(--roar)';
-          formStatus.textContent = 'Network error. Please check your connection and try again.';
+          if (formStatus) {
+            formStatus.style.color = 'var(--roar)';
+            formStatus.textContent = 'Network error. Please check your connection and try again.';
+          }
         })
         .then(() => {
-          modalSubmitBtn.disabled = false;
-          modalSubmitBtn.textContent = 'Submit Inquiry';
+          if (modalSubmitBtn) {
+            modalSubmitBtn.disabled = false;
+            modalSubmitBtn.textContent = 'Submit Inquiry';
+          }
         });
       });
     }
 
-    if (!prefersReducedMotion) { setTimeout(() => { ScrollTrigger.refresh(); }, 500); }
-
-    // ANCHOR SCROLL WITH FIXED HEADER OFFSET
-    function handleAnchorClick(e) {
-      const href = this.getAttribute('href');
-      e.preventDefault();
-      if (href === '#') return;
-      const target = document.querySelector(href);
-      if (!target) return;
-      if (mobileMenu.classList.contains('open')) { menuToggle.classList.remove('open'); mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
-      
-      const nav = document.getElementById('nav');
-      const offset = nav ? -nav.offsetHeight - 20 : -100;
-
-      if (lenis) {
-        isScrolling = true;
-        lenis.scrollTo(target, {
-          offset: offset,
-          duration: 1.2,
-          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          onComplete: () => {
-            if (typeof resetScrollState === 'function') resetScrollState();
-            else isScrolling = false;
-            ScrollTrigger.refresh();
-          }
-        });
-      } else {
-        target.scrollIntoView({ behavior: 'smooth' });
-        setTimeout(() => {
-          if (typeof resetScrollState === 'function') resetScrollState();
-          ScrollTrigger.refresh();
-        }, 1000);
-      }
-    }
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', handleAnchorClick); });
+  if (!prefersReducedMotion && typeof ScrollTrigger !== 'undefined') {
+    setTimeout(() => {
+      if (!anchorScrolling) ScrollTrigger.refresh();
+    }, 500);
   }
+
+  // ANCHOR SCROLL WITH FIXED HEADER OFFSET
+  function handleAnchorClick(e) {
+    if (this.classList.contains('modal-trigger')) return;
+    const href = this.getAttribute('href');
+    if (!href || href.startsWith('/')) return;
+    e.preventDefault();
+    if (href === '#') return;
+
+    let target = document.querySelector(href);
+    if (!target) return;
+
+    // Scroll to the main content of each section, not just the section header
+    if (href === '#hero') {
+      const heroContent = document.getElementById('heroCtaRow') || document.querySelector('.hero-headline');
+      if (heroContent) target = heroContent;
+    } else if (href === '#services') {
+      const servicesContent = document.getElementById('servicesGrid');
+      if (servicesContent) target = servicesContent;
+    } else if (href === '#pricing') {
+      const pricingContent = document.getElementById('pricingGrid') || document.getElementById('pricingTabs');
+      if (pricingContent) target = pricingContent;
+    } else if (href === '#about') {
+      const aboutContent = document.querySelector('.intro-text') || document.querySelector('.intro-pullquote');
+      if (aboutContent) target = aboutContent;
+    } else if (href === '#contact') {
+      const contactContent = document.querySelector('.cta-buttons') || document.querySelector('#contact .section-inner');
+      if (contactContent) target = contactContent;
+    } else if (href === '#faq') {
+      const faqContent = document.querySelector('.faq-list');
+      if (faqContent) target = faqContent;
+    } else if (href === '#testimonials') {
+      const testimonialContent = document.querySelector('.testimonial-carousel');
+      if (testimonialContent) target = testimonialContent;
+    }
+
+    scrollToElement(target);
+  }
+  document.querySelectorAll('a[href^="#"]:not(.modal-trigger)').forEach(anchor => { anchor.addEventListener('click', handleAnchorClick); });
+}
+
+  // Reinitialize cursor on every navigation (back button, bfcache, cross-page links)
+  window.addEventListener('pageshow', () => { initCursor(); });
+  window.addEventListener('load', () => { initCursor(); });
+
 });
 </script>
 
 <!-- Floating WhatsApp Button -->
-<a href="https://wa.me/9779843293239" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp">
+<a href="https://wa.me/9779768537012" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 24 24" class="whatsapp-icon">
     <path fill="currentColor" d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 0 0 1.333 4.982L2 22l5.233-1.371a9.936 9.936 0 0 0 4.779 1.229h.004c5.505 0 9.988-4.478 9.99-9.984a9.984 9.984 0 0 0-9.994-9.874zm5.79 14.218c-.25.707-1.462 1.3-2.012 1.387-.5.08-1.15.148-3.35-.765-2.82-1.168-4.63-4.047-4.77-4.237-.14-.19-1.12-1.49-1.12-2.841 0-1.35.7-2.01 1-2.31.25-.25.65-.35.95-.35.1 0 .2 0 .3.05.25 0 .4.05.55.4.15.35.6 1.45.65 1.55.05.1.1.25.02.4-.08.15-.15.25-.25.38-.1.12-.23.28-.33.38-.1.1-.2.2-.1.35.15.25.65 1.071 1.4 1.741.97.87 1.78 1.14 2.03 1.27.25.13.4.1.55-.05.15-.15.65-.75.82-.99.17-.25.35-.2.6-.1.25.1 1.6.75 1.88.89.28.14.47.2.55.35.08.15.08.87-.17 1.58z"/>
   </svg>
